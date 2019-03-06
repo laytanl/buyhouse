@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Buyhouse</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-3">
+                <div id="app" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <button v-if="show==true" v-on:click="iphone()" type="button" class="btn btn-light btn-lg btn-block active">手机快捷登录</button>
+                                <button v-else v-on:click="iphone()" type="button" class="btn btn-light btn-lg btn-block">手机快捷登录</button>
+                            </div>
+                            <div class="col-lg-6">
+                                <button v-if="show==false" v-on:click="password()" type="button" class="btn btn-light btn-lg btn-block active">账号密码登录</button>
+                                <button v-else v-on:click="password()" type="button" class="btn btn-light btn-lg btn-block ">账号密码登录</button>
+                            </div>
+                        </div>
+                        <!-- 手机快捷登录 -->
+                        <div v-if="m==0">
+                            <div class="row mt-5">
+                                <div class="input-group input-group-lg">
+                                    <div class="input-group-prepend">
+                                        <div class="form-group input-group-lg">
+                                            <select class="form-control" name="" id="">
+                                                <option>中国大陆+86</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input id="tel" v-model="phone" type="text" class="form-control" placeholder="请输入手机号码"
+                                        maxlength="11">
+                                </div>
+                                <small v-if="n==1" class="form-text text-muted ">
+                                    <span class="text-danger">手机号码格式不正确</span>
+                                </small>
+                                <small v-if="isname==0" id="helpId " class="form-text text-muted text-danger">
+                                    <span class="text-danger">手机号码不存在</span>
+                                </small>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="input-group input-group-lg mb-3">
+                                    <input type="text" class="form-control" placeholder="请输入验证码">
+                                    <div class="input-group-append">
+                                        <button v-on:click="getCode()" class="btn btn-outline-secondary" type="button"
+                                            id="getCode">获取验证码</button>
+                                    </div>
+                                </div>
+                                <small v-if="isname==1" id="helpId " class="form-text text-muted text-danger">
+                                    <span class="text-danger">验证码错误</span>
+                                </small>
+                            </div>
+                        </div>
+                        <!-- 账号密码登录 -->
+                        <div v-if="m==1">
+                            <div class="row mt-5">
+                                <div class="input-group input-group-lg mb-3">
+                                    <div class="input-group-prepend">
+                                        <div class="form-group input-group-lg">
+                                            <select class="form-control" name="" id="">
+                                                <option>中国大陆+86</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="请输入手机号码">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 px-0">
+                                    <div class="form-group input-group-lg">
+                                        <input type="password" class="form-control" name="" id="" placeholder="请输入密码">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 offset-lg-9">
+                                    <a href="#" class="text-danger"><small>忘记密码？</small> </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-10 m-auto">
+                                <button type="button" class="btn btn-outline-success btn-lg btn-block">立即登录</button>
+                            </div>
+
+                        </div>
+
+                        <div class="row mt-3 ml-3">
+                            <small>还没有账号 <a href="register.html">立即注册</a> </small>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                // n判断手机号码
+                n: 0,
+                m: 0,
+                show: true,
+                time: 60,
+                phone: '',
+                isname: 2,
+            },
+            methods: {
+                iphone: function () {
+                    this.m = 0;
+                    this.show = true;
+                },
+                password: function () {
+                    this.m = 1;
+                    this.show = false;
+                },
+                getCode: function () {
+                    if (!this.phone.match(/^1[3,5,7,8,9]\d{9}$/)) {
+                        this.n = 1;
+                    } else {
+                        var InterValObj; //timer变量，控制时间
+                        $("#getCode").attr("disabled", "true");
+                        InterValObj = window.setInterval(() => {
+                            if (this.time == 0) {
+                                window.clearInterval(InterValObj); //停止计时器
+                                $("#getCode").removeAttr("disabled"); //启用按钮
+                                $("#getCode").text("重新发送验证码");
+                            } else {
+                                this.time--;
+                                $("#getCode").text("再次发送需等待" + this.time + "秒");
+                            }
+                        }, 1000); //启动计时器，1秒执行一次
+                        
+                        axios.post("user/getcode", {
+                                phone: this.phone,
+                            })
+                            .then((response) => {})
+                            .catch(function (error) {})
+                    }
+                }
+            },
+            mounted() {
+                $('#tel').focus(() => {
+                    this.n = 0;
+                });
+            },
+
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
