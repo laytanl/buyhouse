@@ -135,13 +135,13 @@
                     } else if (this.code1 === this.code) {
                         this.isname == 1;
                     } else {
-                        axios.post("/user/register", {
-                                password: this.password,
-                                code: this.code,
-                                phone: this.phone,
+                        axios.post("/register.json", {
+                                userPassword: this.password,
+                                userCode: this.code,
+                                userPhone: this.phone,
                             })
                             .then((response) => {
-                                axios.get("/user/register")
+                                axios.get("/register.json")
                                     .then((response) => {
                                         console.log(response.data);
                                         this.isname = response.data;
