@@ -35,11 +35,11 @@ public class CodeUtil {
 		return sig;
 	}
 
-	public static int code() {
-		String phone = null;
+	public static int code(String phone) {
+		
 		String result = "";
 		BufferedReader in = null;
-		int m = (int) (Math.random() * 10000);
+		int m = (int) (Math.random() * 9000+1000);
 		System.out.println(m);
 		// get current GMT time
 		Calendar cd = Calendar.getInstance();

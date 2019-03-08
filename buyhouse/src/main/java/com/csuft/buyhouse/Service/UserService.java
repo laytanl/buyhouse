@@ -14,7 +14,6 @@ public class UserService{
 	
 	
 	public void login(User user) {
-		
 		User query=new User();
 		query.setUserPassword(user.getUserPassword());
 		query.setUserPhone(user.getUserPhone());
@@ -38,7 +37,6 @@ public class UserService{
 		} catch (Exception e) {
 			new PlatformException("注册失败");
 		}
-		
 	}
 	
 }
