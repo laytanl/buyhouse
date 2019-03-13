@@ -6,7 +6,7 @@ public class User extends TailBean{
 	private Integer id;
 	private String userPhone;
 	private String userPassword;
-	private Integer userCode;
+	private String userCode;
 	
 	public Integer getId() {
 		return id;
@@ -26,10 +26,11 @@ public class User extends TailBean{
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-	public Integer getUserCode() {
+	
+	public String getUserCode() {
 		return userCode;
 	}
-	public void setUserCode(Integer userCode) {
+	public void setUserCode(String userCode) {
 		this.userCode = userCode;
 	}
 	@Override

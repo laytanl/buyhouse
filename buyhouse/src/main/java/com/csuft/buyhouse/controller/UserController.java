@@ -1,6 +1,9 @@
 package com.csuft.buyhouse.controller;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,54 +20,49 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
-	User u=new User();
-	
+	@Autowired
+	RedisTemplate redisTemplate;
+
 	@GetMapping("/login")
 	public String index() {
 		return "login.html";
 	}
-	
-	
-	@PostMapping("/login.json")
+
+	@PostMapping("/loginforpassword.json")
 	@ResponseBody
-	public JsonResult login(@RequestBody User user) {
+	public JsonResult loginforpassword(@RequestBody User user) {
 		System.out.println(user);
-		userService.save(user);
+		userService.loginforPassword(user);
 		return JsonResult.success();
 	}
 	
+	@PostMapping("/loginforcode.json")
+	@ResponseBody
+	public JsonResult loginforcode(@RequestBody User user) {
+		System.out.println(user);
+		userService.loginforCode(user);
+		return JsonResult.success();
+	}
 
 	@PostMapping("/register.json")
 	@ResponseBody
 	public JsonResult<Integer> register(@RequestBody User user) {
-		System.out.println(u);
-//		if(user.getUserCode().equals(u.getUserCode())&&user.getUserPhone().equals(u.getUserPhone()))
-//		{
-//			userService.save(user);
-//			return JsonResult.success(user.getId());
-//		}
-//		else {
-//			return JsonResult.failMessage("验证码错误");
-//		}
+
 		userService.save(user);
-		return JsonResult.failMessage("验证码错误");
-		
+		return JsonResult.success(user.getId());
 	}
-	
+
 	@PostMapping("/getcode.json")
 	@ResponseBody
 	public JsonResult getcode(@RequestBody User user) {
-		int code=CodeUtil.code(user.getUserPhone());
-		u.setUserCode(code);
-		u.setUserPhone(user.getUserPhone());
-		try {
-			Thread.sleep(60000);
-			u.setUserCode(null);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		System.out.println(user);
+		Integer code = 1234;
+//		Integer code=CodeUtil.code(user.getUserPhone());
+//		u.setUserCode(code.toString());
+//		u.setUserPhone(user.getUserPhone());
+		redisTemplate.opsForValue().set(user.getUserPhone(), code.toString(), 60, TimeUnit.SECONDS);
+		System.out.println(redisTemplate.opsForValue().get(user.getUserPhone()));
 		return JsonResult.success();
 	}
-	
+
 }
