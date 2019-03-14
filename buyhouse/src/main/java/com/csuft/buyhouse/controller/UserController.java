@@ -47,9 +47,17 @@ public class UserController {
 	@PostMapping("/register.json")
 	@ResponseBody
 	public JsonResult<Integer> register(@RequestBody User user) {
-
 		userService.save(user);
 		return JsonResult.success(user.getId());
+	}
+	
+	//找回密码
+	@PostMapping("/getback.json")
+	@ResponseBody
+	public JsonResult<Integer> getback(@RequestBody User user) {
+
+		int code=userService.updatepassword(user);
+		return JsonResult.success(code);
 	}
 
 	@PostMapping("/getcode.json")
