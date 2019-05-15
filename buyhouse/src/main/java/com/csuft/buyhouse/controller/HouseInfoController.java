@@ -25,6 +25,7 @@ import com.csuft.buyhouse.entity.Application;
 import com.csuft.buyhouse.entity.HouseInfo;
 import com.csuft.buyhouse.entity.UserInfo;
 import com.csuft.buyhouse.util.JsonResult;
+import com.csuft.buyhouse.util.PlatformException;
 
 @Controller
 public class HouseInfoController {
@@ -36,23 +37,29 @@ public class HouseInfoController {
 	public String index() {
 		return "sell.html";
 	}
+
 	@GetMapping("/upload1")
 	public String upload() {
 		return "upload.html";
 	}
-	
-	private List<String> srcs=new ArrayList<>();
+
+	private List<String> srcs = new ArrayList<>();
 
 	// 用户提交
 	@PostMapping("/add.json")
 	@ResponseBody
 	public JsonResult add(@RequestBody HouseInfo houseInfo) {
-		System.out.println(houseInfo);	
-		houseInfo.setSrc(srcs.get(0));
-		houseInfo.setPicture1(srcs.get(1));
-		houseInfo.setPicture2(srcs.get(2));
-		houseInfo.setPicture3(srcs.get(3));
-		houseInfoService.add(houseInfo);
+		System.out.println(houseInfo);
+		if (srcs.size() == 4) {
+			houseInfo.setSrc(srcs.get(0));
+			houseInfo.setPicture1(srcs.get(1));
+			houseInfo.setPicture2(srcs.get(2));
+			houseInfo.setPicture3(srcs.get(3));
+			houseInfoService.add(houseInfo);
+		}
+		else {
+			throw new PlatformException("请上传四张图片");
+		}
 		return JsonResult.success();
 	}
 
@@ -63,7 +70,7 @@ public class HouseInfoController {
 		List<HouseInfo> houseinfos = houseInfoService.queryByCondtion(houseInfo);
 		return JsonResult.success(houseinfos);
 	}
-	
+
 	@PostMapping("/listById.json")
 	@ResponseBody
 	public JsonResult<HouseInfo> listById(@RequestBody UserInfo userInfo) {
@@ -72,13 +79,14 @@ public class HouseInfoController {
 		return JsonResult.success(houseinfos);
 	}
 
-   private static final Logger logger = LoggerFactory.getLogger(Application.class);
-    @Bean
-    MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation("e:/tmp");
-        return factory.createMultipartConfig();
-    }
+	private static final Logger logger = LoggerFactory.getLogger(Application.class);
+
+	@Bean
+	MultipartConfigElement multipartConfigElement() {
+		MultipartConfigFactory factory = new MultipartConfigFactory();
+		factory.setLocation("e:/tmp");
+		return factory.createMultipartConfig();
+	}
 
 	@RequestMapping(value = "/upload")
 	@ResponseBody
@@ -104,7 +112,7 @@ public class HouseInfoController {
 		}
 		try {
 			file.transferTo(dest);
-			String src="./picture/"+fileName;
+			String src = "./picture/" + fileName;
 			System.out.println(src);
 			srcs.add(src);
 			return "上传成功";
