@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>buyhouse</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <script src="http://i.gtimg.cn/qzone/biz/gdt/lib/jquery/jquery-2.1.4.js?max_age=31536000"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid px-0" id="app">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light " aria-label="breadcrumb">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="home.html">首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="buy.html">买房<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="sell.html">售房</a>
+                    </li>
+                </ul>
+                <form v-if="m==0" class="form-inline m-2 my-lg-0">
+                    <h class="breadcrumb-item"><a href="Login.html">登录</a></h>
+                    <h class="breadcrumb-item"><a href="Register.html">注册</a></h>
+                </form>
+                <form v-else class="form-inline m-2 my-lg-0">
+                    <h class="breadcrumb-item">欢迎您,<a href="userInfo.html" class="text-dark">{{username1}}</a></h>
+                    <button v-on:click="exit()" type="button" class="btn btn-outline-secondary btn-sm ml-2">退出</button>
+                </form>
+            </div>
+        </nav>
+
+        <form class="form-inline my-2 mt-4 mb-4">
+            <input v-model="name" class="form-control ml-lg-3" type="search" placeholder="请输入房源信息" aria-label="Search"
+                style="width:45%;">
+            <button v-on:click="list()" class="btn btn-outline-success my-2 my-sm-0 ml-lg-3" type="button">搜索</button>
+        </form>
+
+        <div class="card text-left">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="">城区</label>
+                    <span v-for="(area, index) in areas" :key="index">
+                        <button v-if="area.show==false" type="button" class="btn btn-outline-info btn-sm ml-3"
+                            v-on:click="areaed(area);list()">{{area.content}}</button>
+                        <button v-else type="button" class="btn btn-outline-info ml-3 btn-sm active"
+                            v-on:click="areaed(area);list()">{{area.content}}</button>
+                    </span>
+                </div>
+
+                <!-- 售价 -->
+                <div class="form-group mt-2">
+                    <label for="">售价</label>
+                    <span v-for="(price, index) in prices" :key="index">
+                        <button v-if="price.show==false" type="button" class="btn btn-outline-info btn-sm ml-3"
+                            v-on:click="priced(price);list()">{{price.content}}</button>
+                        <button v-else type="button" class="btn btn-outline-info ml-3 btn-sm active"
+                            v-on:click="priced(price);list()">{{price.content}}</button>
+                    </span>
+                </div>
+
+                <!-- 户型 -->
+
+                <div class="form-group mt-2">
+                    <label for="">户型</label>
+                    <span v-for="(htype, index) in htypes" :key="index">
+                        <button v-if="htype.show==false" type="button" class="btn btn-outline-info ml-3 btn-sm"
+                            v-on:click="htyped(htype);list()">{{htype.content}}</button>
+                        <button v-else type="button" class="btn btn-outline-info ml-3 btn-sm active"
+                            v-on:click="htyped(htype);list()">{{htype.content}}</button>
+                    </span>
+                </div>
+
+                <!-- 面积 -->
+                <div class="form-group mt-2">
+                    <label for="">面积</label>
+                    <span v-for="(size, index) in sizes" :key="index">
+                        <button v-if="size.show==false" type="button" class="btn btn-outline-info btn-sm ml-3"
+                            v-on:click="sized(size);list()">{{size.content}}</button>
+                        <button v-else type="button" class="btn btn-outline-info ml-3 btn-sm active"
+                            v-on:click="sized(size);list()">{{size.content}}</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- 楼房信息 -->
+        <div v-if="index<(p+1)*6&&index>=p*6" v-for="(houseinfo, index) in houseinfos" :key="index"
+            class="card mt-3 ml-2" style="max-width: 940px;">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <img v-bind:src="houseinfo.src" class="card-img w-100 h-100">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h3 v-on:click="handle(houseinfo.id)" class="bt-1">
+
+                            <a :href="url" class="card-title text-dark ">{{houseinfo.name}}</a></h3>
+                        <p class="card-text">位置：<span class="text-danger">
+                                {{houseinfo.urban}}区 {{houseinfo.address}}</span></p>
+                        <p class="card-text">面积：<span class="text-danger">{{houseinfo.size}}㎡</span></p>
+                        <p class="card-text">户型：<span class="text-danger">{{houseinfo.room}}室</span></p>
+                    </div>
+
+                </div>
+                <div class="price col-md-2 mt-5">
+                    <p class="sup">总价<span class="text-danger" style="font-size:30px;">{{houseinfo.price}}</span>万/套
+                    </p>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <nav aria-label="Page navigation example" class="mt-3">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" v-on:click="jumpprev()" role="button">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li v-for="(ind,index1) in indexs" :key="index1" class="page-item"><a v-on:click="jump(index1)"
+                        class="page-link" role="button">{{ind}}</a></li>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" v-on:click="jumpnext()" role="button">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+
+        <div class="jumbotron jumbotron-fluid mb-0 mt-5 py-1 bg-dark clearfix">
+            <div class="container pt-4">
+                <h1 class="text-center align-text-bottom text-light" style="font-size: 10px;">Copyright(c)2019
+                    中南林业科技大学信息与计算科学
+                    版权所有
+                </h1>
+            </div>
+        </div>
+
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    areas: [{
+                            content: '天心',
+                            show: false,
+                            value: '天心'
+                        },
+                        {
+                            content: '开福',
+                            show: false,
+                            value: '开福'
+                        },
+                        {
+                            content: '岳麓',
+                            show: false,
+                            value: '岳麓'
+                        },
+                        {
+                            content: '芙蓉',
+                            show: false,
+                            value: '芙蓉'
+                        },
+                        {
+                            content: '浏阳',
+                            show: false,
+                            value: '浏阳'
+                        },
+                        {
+                            content: '宁乡',
+                            show: false,
+                            value: '宁乡'
+                        },
+                        {
+                            content: '望城',
+                            show: false,
+                            value: '望城'
+                        },
+                    ],
+                    htypes: [{
+                            content: '一室',
+                            show: false,
+                            value: 1,
+                        },
+                        {
+                            content: '二室',
+                            show: false,
+                            value: 2,
+                        },
+                        {
+                            content: '三室',
+                            show: false,
+                            value: 3
+                        },
+                        {
+                            content: '四室',
+                            show: false,
+                            value: 4
+                        },
+                        {
+                            content: '五室以及上',
+                            show: false,
+                            value: 5
+                        },
+                    ],
+                    prices: [{
+                            content: '50万以下',
+                            show: false,
+                            value: 0,
+                        },
+                        {
+                            content: '50万-100万',
+                            show: false,
+                            value: 50,
+                        },
+                        {
+                            content: '100万-150万',
+                            show: false,
+                            value: 100,
+                        },
+                        {
+                            content: '150万-200万',
+                            show: false,
+                            value: 150,
+                        },
+                        {
+                            content: '200万-250万',
+                            show: false,
+                            value: 200,
+                        },
+                        {
+                            content: '250万以上',
+                            show: false,
+                            value: 250,
+                        }
+                    ],
+                    sizes: [{
+                            content: '30㎡以下',
+                            show: false,
+                            value: 0,
+                        },
+                        {
+                            content: '30㎡-60㎡',
+                            show: false,
+                            value: 30,
+                        },
+                        {
+                            content: '60㎡-90㎡',
+                            show: false,
+                            value: 60
+                        },
+                        {
+                            content: '90㎡-120㎡',
+                            show: false,
+                            value: 90,
+                        },
+                        {
+                            content: '120㎡-150㎡',
+                            show: false,
+                            value: 120,
+                        },
+                        {
+                            content: '150㎡-200㎡',
+                            show: false,
+                            value: 150,
+                        },
+                        {
+                            content: '200㎡以上',
+                            show: false,
+                            value: 200
+                        },
+                    ],
+                    htype: '',
+                    price: '',
+                    size: '',
+                    houseinfos: new Array(),
+                    name: '',
+                    urban: null,
+                    indexs: [],
+                    p: 0,
+                    url: '',
+                    username1: '',
+                    m: 0
+                },
+
+                methods: {
+                    exit: function () {
+                        sessionStorage.clear();
+                        window.location.href = 'home.html';
+                    },
+                    htyped: function (su) {
+                        if (su.show == true) {
+                            su.show = false;
+                            this.htype = '';
+                        } else {
+                            this.htypes.forEach(s => {
+                                s.show = false;
+                            });
+                            su.show = true;
+                        }
+                    },
+                    priced: function (si) {
+                        if (si.show == true) {
+                            si.show = false;
+                            this.price = '';
+                        } else {
+                            this.prices.forEach(s => {
+                                s.show = false;
+                            });
+                            si.show = true;
+                        }
+                    },
+                    sized: function (bi) {
+                        if (bi.show == true) {
+                            bi.show = false;
+                            this.size = '';
+                        } else {
+                            this.sizes.forEach(s => {
+                                s.show = false;
+                            });
+                            bi.show = true;
+                        }
+                    },
+                    areaed: function (bu) {
+                        if (bu.show == true) {
+                            bu.show = false;
+                            this.urban = null;
+                        } else {
+                            this.areas.forEach(s => {
+                                s.show = false;
+                            });
+                            bu.show = true;
+                        }
+
+                    },
+                    list: function () {
+                        this.htypes.forEach(s => {
+                            if (s.show == true) {
+                                this.htype = s.value;
+                            }
+                        });
+                        this.prices.forEach(s => {
+                            if (s.show == true) {
+                                this.price = s.value;
+                            }
+
+                        });
+                        this.sizes.forEach(s => {
+                            if (s.show == true) {
+                                this.size = s.value;
+                            }
+
+                        });
+                        this.areas.forEach(s => {
+                            if (s.show == true) {
+                                this.urban = s.value;
+                            }
+                        });
+                        axios.post("/list.json", {
+                                size: this.size,
+                                room: this.htype,
+                                price: this.price,
+                                urban: this.urban,
+                                name: this.name,
+                            })
+                            .then(res => {
+                                this.indexs = [];
+                                this.houseinfos = res.data.data;
+                                for (i = 1; i <= (this.houseinfos.length / 6) + 1; i++) {
+                                    this.indexs.push(i);
+                                }
+
+                            })
+                            .catch(error => {
+                                toastr.error(error.response.data.msg);
+                            })
+
+                    },
+                    jump: function (m) {
+                        this.p = m;
+                    },
+                    jumpnext: function () {
+                        if (this.p < this.indexs.length - 1) {
+                            this.p++;
+                        }
+
+                    },
+                    jumpprev: function () {
+                        if (this.p > 0) {
+                            this.p--;
+                        }
+                    },
+                    handle: function (id) {
+                        this.url = `detail.html?id=${id}`;
+                    }
+
+
+                },
+                mounted() {
+                    this.username1 = sessionStorage.getItem("username");
+                    console.log(this.username1);
+                    if (this.username1 != null) {
+                        this.m = 1
+                    } else {
+                        this.m = 0
+                    }
+                    axios.post("/list.json", {})
+                        .then(res => {
+                            this.houseinfos = res.data.data;
+                            for (i = 1; i <= (this.houseinfos.length / 6) + 1; i++) {
+                                this.indexs.push(i);
+                            }
+                            console.log(this.indexs);
+
+                        })
+                        .catch(error => {
+                            toastr.error(error.response.data.msg);
+                        })
+                },
+            })
+        </script>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

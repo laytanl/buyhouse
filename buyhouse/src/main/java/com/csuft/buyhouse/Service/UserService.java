@@ -1,5 +1,28 @@
 package com.csuft.buyhouse.Service;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+
+import javax.servlet.AsyncContext;
+import javax.servlet.DispatcherType;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpUpgradeHandler;
+import javax.servlet.http.Part;
+
 import org.beetl.sql.core.SQLManager;
 import org.beetl.sql.core.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +45,21 @@ public class UserService {
 	RedisTemplate redisTemplate;
 
 	// 验证码登录
-	public void loginforCode(User user) {
+	public void loginforCode(User user, HttpServletRequest request) {
 		if (!user.getUserCode().equals(redisTemplate.opsForValue().get(user.getUserPhone()))) {
 			throw new PlatformException("验证码错误");
+		} else {
+			HttpSession session = request.getSession();
+			// 将数据存储到session中
+			session.setAttribute("username", user.getUserPhone());
+			// 获取session的Id
+			String sessionId = session.getId();
+			System.out.println(sessionId);
 		}
 
 	}
 
-	public void loginforPassword(User user) {
+	public void loginforPassword(User user, HttpServletRequest request) {
 		User query = new User();
 		query.setUserPassword(user.getUserPassword());
 		query.setUserPhone(user.getUserPhone());
@@ -37,6 +67,13 @@ public class UserService {
 		System.out.println(dbuser);
 		if (dbuser == null) {
 			throw new PlatformException("用户名或密码错误");
+		} else {
+			HttpSession session = request.getSession();
+			// 将数据存储到session中
+			session.setAttribute("username", user.getUserPhone());
+			// 获取session的Id
+			String sessionId = session.getId();
+			System.out.println(sessionId);
 		}
 	}
 
@@ -54,8 +91,7 @@ public class UserService {
 			Query<User> query1 = sqlManager.query(User.class);
 			int count = query1.andEq("user_phone", user.getUserPhone()).update(recode);
 			return count;
-		}
-		else {
+		} else {
 			throw new PlatformException("验证码错误");
 		}
 	}

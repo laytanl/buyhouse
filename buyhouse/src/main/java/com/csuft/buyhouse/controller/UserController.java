@@ -2,6 +2,8 @@ package com.csuft.buyhouse.controller;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -30,17 +32,17 @@ public class UserController {
 
 	@PostMapping("/loginforpassword.json")
 	@ResponseBody
-	public JsonResult loginforpassword(@RequestBody User user) {
+	public JsonResult loginforpassword(@RequestBody User user,HttpServletRequest request) {
 		System.out.println(user);
-		userService.loginforPassword(user);
+		userService.loginforPassword(user,request);
 		return JsonResult.success();
 	}
 	
 	@PostMapping("/loginforcode.json")
 	@ResponseBody
-	public JsonResult loginforcode(@RequestBody User user) {
+	public JsonResult loginforcode(@RequestBody User user,HttpServletRequest request) {
 		System.out.println(user);
-		userService.loginforCode(user);
+		userService.loginforCode(user,request);
 		return JsonResult.success();
 	}
 
@@ -65,9 +67,8 @@ public class UserController {
 	public JsonResult getcode(@RequestBody User user) {
 		System.out.println(user);
 		Integer code = 1234;
-//		Integer code=CodeUtil.code(user.getUserPhone());
-//		u.setUserCode(code.toString());
-//		u.setUserPhone(user.getUserPhone());
+	//	Integer code=CodeUtil.code(user.getUserPhone());
+
 		redisTemplate.opsForValue().set(user.getUserPhone(), code.toString(), 60, TimeUnit.SECONDS);
 		System.out.println(redisTemplate.opsForValue().get(user.getUserPhone()));
 		return JsonResult.success();
