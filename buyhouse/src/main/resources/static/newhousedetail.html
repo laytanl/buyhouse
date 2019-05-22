@@ -36,15 +36,14 @@
                         <a class="nav-link" href="home.html">首页 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
-                        <a class="nav-link" href="buy.html">二手房<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active ml-3">
-                        <a class="nav-link" href="buynewhouse.html">新房<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="buy.html">买房<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
                         <a class="nav-link" href="sell.html">售房</a>
                     </li>
-
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="buynewhouse.html">新房<span class="sr-only">(current)</span></a>
+                    </li>
                     <li class="nav-item active ml-3">
                         <a class="nav-link" href="guide.html">指南</a>
                     </li>
@@ -101,23 +100,25 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-5">
-                            <p class="sup">总价： <span class="text-danger"
-                                    style="font-size:60px;">{{houseinfo.price}}</span>万/套
+                            <p class="sup">均价： <span class="text-danger"
+                                    style="font-size:60px;">{{houseinfo.price}}</span>元/平
                                 <button v-if="houseinfo.collec==0" v-on:click="collection(houseinfo.id)" type="button"
                                     class="btn btn-outline-primary btn-sm float-right">收藏</button>
                                 <button v-else v-on:click="cancel(houseinfo.id)" type="button"
                                     class="btn btn-outline-primary btn-sm float-right active">已收藏</button>
                         </div>
                         <hr>
+                        <h5 class="card-text mt-3">物业类型：<span class="text-danger">
+                                {{houseinfo.style}} </span></h5>
                         <h5 class="card-text mt-3">具体位置：<span class="text-danger">
                                 {{houseinfo.urban}}区 {{houseinfo.address}} </span></h5>
-                        <h5 class="card-text mt-3">楼栋号：<span class="text-danger">
-                                {{houseinfo.num}} </span></h5>
-                        <h5 class="card-text mt-3">面积：<span class="text-danger">{{houseinfo.size}}㎡</span></h5>
+                        <h5 class="card-text mt-3">开盘时间：<span class="text-danger">
+                                {{houseinfo.time}} </span></h5>
+                        <h5 class="card-text mt-3">建筑占地面积：<span class="text-danger">{{houseinfo.size}}㎡</span></h5>
                         <h5 class="card-text mt-3">户型：<span
                                 class="text-danger">{{houseinfo.room}}室{{houseinfo.hall}}厅{{houseinfo.guard}}卫</span>
                         </h5>
-                        <h5 class="card-text mt-3">楼主姓名: <span class="text-danger">{{houseinfo.sellerName}}</span></h5>
+                        <h5 class="card-text mt-3">开发商: <span class="text-danger">{{houseinfo.sellerName}}</span></h5>
                         <h5 class="card-text mt-3">联系电话：<span class="text-danger">{{houseinfo.tel}}</span></h5>
                     </div>
                 </div>
@@ -160,14 +161,14 @@
             },
             methods: {
                 collection: function (id) {
-                    axios.post("/collection.json", {
-                            houseInfoId: id,
+                    axios.post("/collectionNewHouse.json", {
+                            newhouseInfoId: id,
                             userPhone: this.username1,
                         })
                         .then((res) => {
-                            axios.post("/listById.json", {
+                            axios.post("/listnewhouseById.json", {
                                     userPhone: this.username1,
-                                    houseInfoId: this.id,
+                                    newhouseInfoId: this.id,
                                 })
                                 .then(res => {
                                     this.houseinfo = res.data.data;
@@ -182,14 +183,14 @@
                         })
                 },
                 cancel: function (id) {
-                    axios.post("/cancel.json", {
-                            houseInfoId: id,
+                    axios.post("/cancelNewHouse.json", {
+                            newhouseInfoId: id,
                             userPhone: this.username1,
                         })
                         .then(res => {
-                            axios.post("/listById.json", {
+                            axios.post("/listnewhouseById.json", {
                                     userPhone: this.username1,
-                                    houseInfoId: this.id,
+                                    newhouseInfoId: this.id,
                                 })
                                 .then(res => {
                                     this.houseinfo = res.data.data;
@@ -221,9 +222,9 @@
                 var url = decodeURI(window.location.href);
                 var argsIndex = url.split("?id=");
                 this.id = argsIndex[1];
-                axios.post("/listById.json", {
+                axios.post("/listnewhouseById.json", {
                         userPhone: this.username1,
-                        houseInfoId: this.id,
+                        newhouseInfoId: this.id,
                     })
                     .then(res => {
                         this.houseinfo = res.data.data;

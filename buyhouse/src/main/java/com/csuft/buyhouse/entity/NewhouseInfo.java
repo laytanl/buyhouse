@@ -1,29 +1,27 @@
 package com.csuft.buyhouse.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-import org.beetl.sql.core.TailBean;
-
-public class HouseInfo extends TailBean{
-	private Integer id;
+public class NewhouseInfo {
+	private Integer id;	
+	private String urban;
 	private String name;
+	private String time;
 	private Integer room;
 	private Integer hall;
 	private Integer guard;
 	private Integer size;
 	private String tel;
-	private String num;
+	private String style;
 	private String sellerName;
 	private Integer price;
-	private String urban;
 	private String address;
 	private String src;
 	private String picture1;
 	private String picture2;
 	private String picture3;
 	private int collec;
-	private int flag=0;//0待审，1:通过，2:未通过
+	private int flag=0;//0:未开盘，1:在售
 	
 	public Integer getId() {
 		return id;
@@ -31,13 +29,31 @@ public class HouseInfo extends TailBean{
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public String getUrban() {
+		return urban;
+	}
+	public void setUrban(String urban) {
+		this.urban = urban;
+	}
+	
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public Integer getRoom() {
 		return room;
 	}
@@ -50,18 +66,17 @@ public class HouseInfo extends TailBean{
 	public void setHall(Integer hall) {
 		this.hall = hall;
 	}
-	
-	public String getSrc() {
-		return src;
-	}
-	public void setSrc(String src) {
-		this.src = src;
-	}
 	public Integer getGuard() {
 		return guard;
 	}
 	public void setGuard(Integer guard) {
 		this.guard = guard;
+	}
+	public Integer getSize() {
+		return size;
+	}
+	public void setSize(Integer size) {
+		this.size = size;
 	}
 	public String getTel() {
 		return tel;
@@ -69,29 +84,12 @@ public class HouseInfo extends TailBean{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getNum() {
-		return num;
-	}
-	public void setNum(String num) {
-		this.num = num;
-	}
+	
 	public int getCollec() {
 		return collec;
 	}
 	public void setCollec(int collec) {
 		this.collec = collec;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public Integer getSize() {
-		return size;
-	}
-	public void setSize(Integer size) {
-		this.size = size;
 	}
 	public String getSellerName() {
 		return sellerName;
@@ -105,11 +103,17 @@ public class HouseInfo extends TailBean{
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getUrban() {
-		return urban;
+	public String getAddress() {
+		return address;
 	}
-	public void setUrban(String urban) {
-		this.urban = urban;
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
 	}
 	public String getPicture1() {
 		return picture1;
@@ -135,7 +139,5 @@ public class HouseInfo extends TailBean{
 	public void setFlag(int flag) {
 		this.flag = flag;
 	}
-	
-	
 	
 }

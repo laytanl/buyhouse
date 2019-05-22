@@ -1,0 +1,13 @@
+package com.csuft.buyhouse.Dao;
+
+import java.util.List;
+
+import org.beetl.sql.core.annotatoin.SqlResource;
+import org.beetl.sql.core.mapper.BaseMapper;
+
+import com.csuft.buyhouse.entity.UserNewinfo;
+@SqlResource("admin.usernewinfo")
+public interface UserNewinfoDao  extends BaseMapper<UserNewinfo>{
+	
+	List<UserNewinfo> querynewhouseInfoId(UserNewinfo userNewinfo);
+}

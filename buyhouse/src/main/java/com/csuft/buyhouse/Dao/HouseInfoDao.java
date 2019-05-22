@@ -12,5 +12,7 @@ public interface HouseInfoDao extends BaseMapper<HouseInfo>{
 
 	List<HouseInfo> queryByCondtion(HouseInfo houseInfo);
 
+	List<HouseInfo> queryByinfos();
+
 
 }

@@ -161,6 +161,7 @@
                                 console.log(res.data);
                                 
                                 toastr.success("注册成功");
+                                window.location.href = 'Login.html';
                             })
                             .catch(error =>{   
                               toastr.error(error.response.data.msg);

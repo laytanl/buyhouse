@@ -1,0 +1,2303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="applicable-device" content="pc">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.ke.com/cs/baike/">
+    <title>buyhouse</title>
+    <link href="/favicon.ico" type="image/x-icon" rel=icon>
+    <link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link rel="stylesheet" href="https://s1.ljcdn.com/pegasus/pc/asset/common.css?_v=2019052117443428">
+    <link rel="stylesheet" href="https://s1.ljcdn.com/pegasus/pc/asset/baikeV2/index/index.css?_v=2019052117443428">
+    <!--[if lt IE 9]><script type="text/javascript" src="https://s1.ljcdn.com/pegasus/dep/common-require/html5.js?_v=2019052117443428"></script><![endif]-->
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+    <script src="http://i.gtimg.cn/qzone/biz/gdt/lib/jquery/jquery-2.1.4.js?max_age=31536000"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light " id="app" aria-label="breadcrumb">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home.html">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="buy.html">二手房<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="buynewhouse.html">新房<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="sell.html">售房</a>
+                </li>
+
+                <li class="nav-item active ml-3">
+                    <a class="nav-link" href="guide.html">指南</a>
+                </li>
+            </ul>
+            <form v-if="m==0" class="form-inline m-2 my-lg-0">
+                <h class="breadcrumb-item"><a href="managerlogin.html">管理</a></h>
+                <h class="breadcrumb-item"><a href="Login.html">登录</a></h>
+                <h class="breadcrumb-item"><a href="Register.html">注册</a></h>
+            </form>
+            <form v-else class="form-inline m-2 my-lg-0">
+                <h class="breadcrumb-item">欢迎您,<a href="userInfo.html" class="text-dark">{{username1}}</a></h>
+                <button t v-on:click="exit()" ype="button" class="btn btn-outline-secondary btn-sm ml-2">退出</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="g-main">
+        <div class="m-content">
+            <div class="wrap">
+                <div class="box-l">
+                    <div class="m-classify">
+                        <h2 class="hd">
+                            <div class="baike"></div>
+                        </h2>
+                        <div class="bd">
+                            <dl>
+                                <dt>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="购房须知"
+                                        href="https://news.ke.com/cs/baike/026/" target="_blank">购房须知</a>
+                                </dt>
+                                <dd>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="房产政策"
+                                        href="https://news.ke.com/cs/baike/0033/" target="_blank">房产政策</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="购房建议"
+                                        href="https://news.ke.com/cs/baike/0035/" target="_blank">购房建议</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="购房资质"
+                                        href="https://news.ke.com/cs/baike/0036/" target="_blank">购房资质</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="房屋贷款"
+                                        href="https://news.ke.com/cs/baike/0037/" target="_blank">房屋贷款</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="保障住房"
+                                        href="https://news.ke.com/cs/baike/0039/" target="_blank">保障住房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="产权/变更"
+                                        href="https://news.ke.com/cs/baike/0040/" target="_blank">产权/变更</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="法律纠纷"
+                                        href="https://news.ke.com/cs/baike/0041/" target="_blank">法律纠纷</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="房屋装修"
+                                        href="https://news.ke.com/cs/baike/0042/" target="_blank">房屋装修</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="其他"
+                                        href="https://news.ke.com/cs/baike/0043/" target="_blank">其他</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="二手房"
+                                        href="https://news.ke.com/cs/baike/027/" target="_blank">二手房</a>
+                                </dt>
+                                <dd>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="准备买房"
+                                        href="https://news.ke.com/cs/baike/0044/" target="_blank">准备买房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="看房/选房"
+                                        href="https://news.ke.com/cs/baike/0045/" target="_blank">看房/选房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="签约/定房"
+                                        href="https://news.ke.com/cs/baike/0046/" target="_blank">签约/定房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="全款/贷款"
+                                        href="https://news.ke.com/cs/baike/0047/" target="_blank">全款/贷款</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="缴税/过户"
+                                        href="https://news.ke.com/cs/baike/0048/" target="_blank">缴税/过户</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="入住/交接"
+                                        href="https://news.ke.com/cs/baike/0049/" target="_blank">入住/交接</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="买房风险"
+                                        href="https://news.ke.com/cs/baike/0050/" target="_blank">买房风险</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="新房"
+                                        href="https://news.ke.com/cs/baike/028/" target="_blank">新房</a>
+                                </dt>
+                                <dd>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="准备买房"
+                                        href="https://news.ke.com/cs/baike/0051/" target="_blank">准备买房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="看房/选房"
+                                        href="https://news.ke.com/cs/baike/0052/" target="_blank">看房/选房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="认购新房"
+                                        href="https://news.ke.com/cs/baike/0053/" target="_blank">认购新房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="签约/定房"
+                                        href="https://news.ke.com/cs/baike/0054/" target="_blank">签约/定房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="全款/贷款"
+                                        href="https://news.ke.com/cs/baike/0055/" target="_blank">全款/贷款</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="收房/验房"
+                                        href="https://news.ke.com/cs/baike/0056/" target="_blank">收房/验房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="装修/入住"
+                                        href="https://news.ke.com/cs/baike/0057/" target="_blank">装修/入住</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="退房/维权"
+                                        href="https://news.ke.com/cs/baike/0058/" target="_blank">退房/维权</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="海外买房"
+                                        href="https://news.ke.com/cs/baike/029/" target="_blank">海外买房</a>
+                                </dt>
+                                <dd>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="各国概况"
+                                        href="https://news.ke.com/cs/baike/0059/" target="_blank">各国概况</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="计划买房"
+                                        href="https://news.ke.com/cs/baike/0060/" target="_blank">计划买房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="签约定房"
+                                        href="https://news.ke.com/cs/baike/0061/" target="_blank">签约定房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="银行贷款"
+                                        href="https://news.ke.com/cs/baike/0062/" target="_blank">银行贷款</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="交易过户"
+                                        href="https://news.ke.com/cs/baike/0063/" target="_blank">交易过户</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="房屋代理"
+                                        href="https://news.ke.com/cs/baike/0064/" target="_blank">房屋代理</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="卖房"
+                                        href="https://news.ke.com/cs/baike/030/" target="_blank">卖房</a>
+                                </dt>
+                                <dd>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="准备卖房"
+                                        href="https://news.ke.com/cs/baike/0066/" target="_blank">准备卖房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="产权核验"
+                                        href="https://news.ke.com/cs/baike/0067/" target="_blank">产权核验</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="收定金/签约"
+                                        href="https://news.ke.com/cs/baike/0068/" target="_blank">收定金/签约</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="分步收款"
+                                        href="https://news.ke.com/cs/baike/0069/" target="_blank">分步收款</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="缴税/过户"
+                                        href="https://news.ke.com/cs/baike/0070/" target="_blank">缴税/过户</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="交房须知"
+                                        href="https://news.ke.com/cs/baike/0071/" target="_blank">交房须知</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="卖房风险"
+                                        href="https://news.ke.com/cs/baike/0072/" target="_blank">卖房风险</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="换房"
+                                        href="https://news.ke.com/cs/baike/031/" target="_blank">换房</a>
+                                </dt>
+                                <dd>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="准备换房"
+                                        href="https://news.ke.com/cs/baike/0073/" target="_blank">准备换房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="换房方案"
+                                        href="https://news.ke.com/cs/baike/0074/" target="_blank">换房方案</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="卖旧/买新"
+                                        href="https://news.ke.com/cs/baike/0075/" target="_blank">卖旧/买新</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="缴税/过户"
+                                        href="https://news.ke.com/cs/baike/0077/" target="_blank">缴税/过户</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="交房/收房"
+                                        href="https://news.ke.com/cs/baike/0078/" target="_blank">交房/收房</a>
+                                    <a class=" LOGCLICK" data-log_id="10001" data-bl="classify" data-el="换房风险"
+                                        href="https://news.ke.com/cs/baike/0079/" target="_blank">换房风险</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="m-latest">
+                        <div class="hd"><span class="tit">最新百科</span><a href="/cs/baike/zxbk" class="btn-right"
+                                target="_blank">更多</a></div>
+                        <div class="bd">
+                            <div class="item"><a href="https://news.ke.com/cs/baike/0700464.html" target="_blank"
+                                    class="LOGVIEW LOGCLICK" data-log_id="10001" data-bl="detail"
+                                    data-el="https://news.ke.com/cs/baike/0700464.html"
+                                    data-log_index="0">毛坯房装修改造水电路需要注意哪些问题？</a><span class="time">2018-11-06</span></div>
+                            <div class="item"><a href="https://news.ke.com/cs/baike/0690969.html" target="_blank"
+                                    class="LOGVIEW LOGCLICK" data-log_id="10001" data-bl="detail"
+                                    data-el="https://news.ke.com/cs/baike/0690969.html"
+                                    data-log_index="1">如何选择全明户型？</a><span class="time">2018-11-05</span></div>
+                            <div class="item"><a href="https://news.ke.com/cs/baike/0699609.html" target="_blank"
+                                    class="LOGVIEW LOGCLICK" data-log_id="10001" data-bl="detail"
+                                    data-el="https://news.ke.com/cs/baike/0699609.html" data-log_index="2">重磅！公积金出新规
+                                    暂停住房公积金异地贷款</a><span class="time">2018-10-31</span></div>
+                            <div class="item"><a href="https://news.ke.com/cs/baike/0699034.html" target="_blank"
+                                    class="LOGVIEW LOGCLICK" data-log_id="10001" data-bl="detail"
+                                    data-el="https://news.ke.com/cs/baike/0699034.html"
+                                    data-log_index="3">如何辨别二手房楼龄？楼龄选择多久更合适呢？</a><span class="time">2018-10-29</span>
+                            </div>
+                            <div class="item"><a href="https://news.ke.com/cs/baike/0688552.html" target="_blank"
+                                    class="LOGVIEW LOGCLICK" data-log_id="10001" data-bl="detail"
+                                    data-el="https://news.ke.com/cs/baike/0688552.html"
+                                    data-log_index="4">板楼、塔楼、板塔结合三种建筑类型该如何选择?</a><span class="time">2018-10-11</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-r">
+                    <div class="m-recommend" id="banner">
+                        <div class="u-carousel carousel-banner">
+                            <ol class="carousel-indicators">
+                                <li class="carousel-indicator active"></li>
+                                <li class="carousel-indicator "></li>
+                                <li class="carousel-indicator "></li>
+                            </ol>
+                            <div class="carousel-inners"><a href="https://m.lianjia.com/subject/66579.h5"
+                                    target="_blank" class="carousel-inner" data-lj_dianji="baike25480"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1556522155phpvRgchQ.jpeg"
+                                        alt="房产交易知识集锦  一图解答购房疑惑"><span class="title"><span class="tit">房产交易知识集锦
+                                            一图解答购房疑惑</span><span
+                                            class="subtit">买房的过程，也是一个不断学习和精进房产交易知识的过程。本期，为各位交易买卖双方整理了4月网友们最高频的问题，希望能给大家参考。详情请点击：</span></span></a><a
+                                    href="https://m.lianjia.com/subject/66445.h5" target="_blank" class="carousel-inner"
+                                    data-lj_dianji="baike25481"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1556522279phpkxct8t.jpeg"
+                                        alt="爆款户型大起底 严选好房低至91万"><span class="title"><span class="tit">爆款户型大起底
+                                            严选好房低至91万</span><span
+                                            class="subtit">户型之于买房，更多是像内衣，决定了住起来是否舒适舒心。好的户型，不仅可使主要功能空间有恰好的采光、日照、通风，还能减少实际使用面积的浪费，更多赋予居住者以私密性和便捷性。那么，户型到底要怎么选……</span></span></a><a
+                                    href="https://m.lianjia.com/subject/66478.h5" target="_blank" class="carousel-inner"
+                                    data-lj_dianji="baike25482"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1556522363phpccfoGs.jpeg"
+                                        alt="带看TOP10｜银四最后一波“网红”房屋"><span class="title"><span
+                                            class="tit">带看TOP10｜银四最后一波“网红”房屋</span><span
+                                            class="subtit">为了解决大家的置业困扰，这里通过大数据筛选，4.21-4.27带看房源TOP10，不仅仅是周度网红房源，备受购房者青睐，更其因为户型优势、配套优势、环境优势吸引众多置业者眼球。赶紧来看看吧~</span></span></a>
+                            </div>
+                        </div>
+                        <div class="u-carousel carousel-recommend" id="recommend">
+                            <div class="carousel-controls">
+                                <div class="carousel-control carousel-control-prev"></div>
+                                <div class="carousel-control carousel-control-next"></div>
+                            </div>
+                            <div class="carousel-inners" style="width: 1682px;"><a
+                                    href="https://m.lianjia.com/cs/baike/0689875.html" target="_blank"
+                                    class="carousel-inner" data-lj_dianji="baike25169"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1539247044php5j4MBk.jpeg.262x150.jpg"
+                                        alt="如何正确计算得房率，达到实惠又方便的效果"><span class="title"><span
+                                            class="tit">如何正确计算得房率，达到实惠又方便的效果</span><span
+                                            class="subtit">得房率太低，不实惠；太高，不方便。如何正确看待得房率，主要还得看公摊面积设计得是否科学合理。一般多层的建筑物得房率为88%，高层的建筑物得房率为72%，而办公楼为55%。</span></span><span
+                                        class="layer"></span></a><a href="https://m.lianjia.com/zz/baike/0694754.html"
+                                    target="_blank" class="carousel-inner" data-lj_dianji="baike25168"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1539246784phpgt6RWi.jpeg.262x150.jpg"
+                                        alt="二手房有租户，签合同应注意什么？"><span class="title"><span
+                                            class="tit">二手房有租户，签合同应注意什么？</span><span
+                                            class="subtit">二手房若有租户，进行买卖时，承租人在同等条件下有优先购买权。</span></span><span
+                                        class="layer"></span></a><a href="https://m.lianjia.com/cs/baike/0691990.html"
+                                    target="_blank" class="carousel-inner" data-lj_dianji="baike25167"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1539246574phpyX0QgM.jpeg.262x150.jpg"
+                                        alt="低层、多层、小高层、高层如何划分，如何选择？"><span class="title"><span
+                                            class="tit">低层、多层、小高层、高层如何划分，如何选择？</span><span
+                                            class="subtit">住宅类型的划分标准有很多，其中按建筑高度划分，可分为低层、多层、小高层、高层。每种建筑类型各有优势与劣势。</span></span><span
+                                        class="layer"></span></a><a
+                                    href="https://news.lianjia.com/cs/baike/0657936.html" target="_blank"
+                                    class="carousel-inner" data-lj_dianji="baike24996"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1534993229phpj8RHCq.jpeg.262x150.jpg"
+                                        alt="长沙买房者的福音！可就近打征信报告了"><span class="title"><span
+                                            class="tit">长沙买房者的福音！可就近打征信报告了</span><span
+                                            class="subtit">长沙市个人信用报告自助查询网点从4家增长至9家，社会公众可根据网点位置就近查询个人信用报告。</span></span><span
+                                        class="layer"></span></a><a href="https://m.lianjia.com/cs/baike/0653376.html"
+                                    target="_blank" class="carousel-inner" data-lj_dianji="baike24708"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1531363287phpRiQfX0.jpeg.262x150.jpg"
+                                        alt="买新房交了首付后被银行拒贷，首付款能退吗？"><span class="title"><span
+                                            class="tit">买新房交了首付后被银行拒贷，首付款能退吗？</span><span
+                                            class="subtit">首先根据合同上是否有约定进行调解，如没约定，则要看银行拒贷原因来明确责任。</span></span><span
+                                        class="layer"></span></a><a
+                                    href="https://news.lianjia.com/cs/baike/0652120.html" target="_blank"
+                                    class="carousel-inner" data-lj_dianji="baike24661"><img
+                                        src="https://image1.ljcdn.com/neirong-image/neirong1530774771phpDzuDOD.jpeg.262x150.jpg"
+                                        alt="首套房贷款平均利率升至5.56%，会有哪些影响？"><span class="title"><span
+                                            class="tit">首套房贷款平均利率升至5.56%，会有哪些影响？</span><span
+                                            class="subtit">贷款利率直接影响到贷款时所产生的利息，贷款利率上升，购房者的还款压力也会随之上升。</span></span><span
+                                        class="layer"></span></a></div>
+                        </div>
+                        <div class="btn-lookmore"></div>
+                    </div>
+                    <div class="m-list u-tab tab-topic" id="list">
+                        <ul class="tab-controls">
+                            <li class="tab-control active">二手房</li>
+                            <li class="tab-control ">新房</li>
+                            <li class="tab-control ">海外买房</li>
+                            <li class="tab-control ">卖房</li>
+                            <li class="tab-control ">换房</li>
+                        </ul>
+                        <div class="tab-inners">
+                            <div class="tab-inner active">
+                                <div class="card-item active"><a href="https://news.ke.com/cs/baike/0044/"
+                                        target="_blank" class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-01"></div>
+                                        <div class="tit">准备买房</div>
+                                        <div class="subtit">有购房资质了吗，资金准备好了吗？开始寻找房源吧</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0332062.html" target="_blank"
+                                                        data-lj_dianji="baike23517" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0332062.html">
+                                                        <div class="tit">购买地段好但房龄大的房屋需要注意什么？</div>
+                                                        <div class="subtit">
+                                                            老旧二手房地段好，交通便利，而且比同地段的新房价格低很多，但是这些房往往房龄较大、小区环境较差，居住舒适度较低。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0315206.html" target="_blank"
+                                                        data-lj_dianji="baike23518" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0315206.html">
+                                                        <div class="tit">什么是进深开间？有何影响？</div>
+                                                        <div class="subtit">
+                                                            进深是一间独立的房间从前墙到后墙之间的实际长度，即一间房屋的深度。开间也叫面宽，指相邻两个横向墙体间的距离，即一单独房间的宽度。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0219784.html" target="_blank"
+                                                        data-lj_dianji="baike19990" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0219784.html">
+                                                        <div class="tit">二手房有何优缺点？该如何选择？</div>
+                                                        <div class="subtit">二手房存在自身的优缺点，购房者在购买前可结合自身的情况综合思考。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0186436.html" target="_blank"
+                                                        data-lj_dianji="baike19989" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0186436.html">
+                                                        <div class="tit">购房者买房需要支付哪些费用？</div>
+                                                        <div class="subtit">
+                                                            购房者在买房时，主要需要支付的费用包括：交易税费、房屋价款、贷款本金及利息、以及其他费用等。注意购买新房和二手房税费的区别。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0136566.html" target="_blank"
+                                                        data-lj_dianji="baike18401" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0136566.html">
+                                                        <div class="tit">在长沙如何查个人征信，它对贷款有什么影响？</div>
+                                                        <div class="subtit">
+                                                            查询个人征信可以通过网上前往所在地中国人民银行分支机构进行现场查询、互联网查询以及网银查询、商业银行代理查询等其他服务渠道这三种途径。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0186383.html" target="_blank"
+                                                        data-lj_dianji="baike18402" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0186383.html">
+                                                        <div class="tit">什么是单位房，单位房可以进行二手交易吗？</div>
+                                                        <div class="subtit">
+                                                            单位房可以进行二手交易，但存在一定的风险，购买者需要注意：所购单位房的产权所属、单位是否同意职工转让、是否对职工的转让行为设定了限制条件、设定了哪些条件、单位是否保留优先购买权等。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0045/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-02"></div>
+                                        <div class="tit">看房/选房</div>
+                                        <div class="subtit">楼层户型会挑吗，小区配套会看吗？为你准备了干货</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0518413.html" target="_blank"
+                                                        data-lj_dianji="baike23520" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0518413.html">
+                                                        <div class="tit">买房选顶楼，有哪些优缺点？</div>
+                                                        <div class="subtit">
+                                                            顶楼房相对于中层住宅来说价格会便宜一些，可以节省不少开支，有不少购房者会选择购买顶楼房。顶楼房有优点也有缺点。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0518444.html" target="_blank"
+                                                        data-lj_dianji="baike23519" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0518444.html">
+                                                        <div class="tit">什么样的房子采光好？</div>
+                                                        <div class="subtit">
+                                                            买房时，要对楼房的楼间距、朝向、楼层数、面宽和进深等因素进行综合分析，每一个因素都对房子的采光有影响。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0140515.html" target="_blank"
+                                                        data-lj_dianji="baike18403" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0140515.html">
+                                                        <div class="tit">什么样的房子才是好房子？具体有什么标准</div>
+                                                        <div class="subtit">判断一个房子是否是好房子，得从位置、绿化、配套、价格和物业这几个方面来判断。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0137242.html" target="_blank"
+                                                        data-lj_dianji="baike18404" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0137242.html">
+                                                        <div class="tit">房屋朝向该怎么判定，各朝向的利弊分别是什么?</div>
+                                                        <div class="subtit">房屋朝向问题关系到房屋的采光和通风性，每个朝向都有一定的利弊。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0187274.html" target="_blank"
+                                                        data-lj_dianji="baike18346" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0187274.html">
+                                                        <div class="tit">如何区分高层、小高层？各有什么优缺点？</div>
+                                                        <div class="subtit">
+                                                            住宅类型的划分标准有很多，目前市场上主要按楼梯高度分类，分为低层、小高层、高层、超高层等。如果是购买电梯房，一般购房者比较青睐于小高层与高层的房子，小高层和高层的房子都各有优缺点的。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0190209.html" target="_blank"
+                                                        data-lj_dianji="baike18347" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0190209.html">
+                                                        <div class="tit">房屋有抵押，在进行交易时需注意什么？</div>
+                                                        <div class="subtit">
+                                                            如果因为没有还清银行贷款，房产证被抵押在银行，卖方需要先还完按揭贷款，解除抵押才能上市交易。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0046/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-03"></div>
+                                        <div class="tit">签约/定房</div>
+                                        <div class="subtit">定金协议怎么签，买卖合同注意啥？核心环节别大意</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0317386.html" target="_blank"
+                                                        data-lj_dianji="baike23521" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0317386.html">
+                                                        <div class="tit">买二手房，签约之前需要准备什么？</div>
+                                                        <div class="subtit">买房前要确认房屋基本情况以及买卖双方情况，确保交易的有序进行。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0171122.html" target="_blank"
+                                                        data-lj_dianji="baike18406" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0171122.html">
+                                                        <div class="tit">签订二手房买卖合同有哪些注意事项？</div>
+                                                        <div class="subtit">
+                                                            在签订买卖合同时，购房者要注意确认卖方基本信息的真实性与有效性、明确违约责任及房屋权属等问题。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0192714.html" target="_blank"
+                                                        data-lj_dianji="baike18405" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0192714.html">
+                                                        <div class="tit">什么是补充协议，包括什么内容？</div>
+                                                        <div class="subtit">
+                                                            在购房交易中，买卖双方约定的所有细节都应该写进补充协议，补充协议条款与原合同不一致或发生冲突时，应当以补充协议为准，为减少纠纷，一定不要忘记签署补充协议。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0203945.html" target="_blank"
+                                                        data-lj_dianji="baike18348" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0203945.html">
+                                                        <div class="tit">买二手房签约时有什么细节问题需要注意？</div>
+                                                        <div class="subtit">二手房签约时要确定合法签约权利人应是完全民事行为能力人，注意在签约中控制一些风险。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0192645.html" target="_blank"
+                                                        data-lj_dianji="baike18350" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0192645.html">
+                                                        <div class="tit">二手房有租户，买方购房该怎么办？</div>
+                                                        <div class="subtit">承租人有同等优先购买的权利，也有依法履行合同约定的义务。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/085439.html" target="_blank"
+                                                        data-lj_dianji="baike12187" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/085439.html">
+                                                        <div class="tit">买卖业务中，签署定金相关文件的注意事项</div>
+                                                        <div class="subtit">
+                                                            二手房签约的过程中，需要注意很多方面。比如索取相关凭证、向客户收取的定金额度最高不超过总房款的20%等等。一旦不注意，可能会让大家的利益受到损害。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0047/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-04"></div>
+                                        <div class="tit">全款/贷款</div>
+                                        <div class="subtit">贷款条件满足吗，贷款流程怎么走？资金到位很关键</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0213183.html" target="_blank"
+                                                        data-lj_dianji="baike18351" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0213183.html">
+                                                        <div class="tit">买房贷款收入证明怎么开？收入不足怎么办？</div>
+                                                        <div class="subtit">
+                                                            买房如果是商业贷款需要贷款人开具收入证明，要求贷款者的月收入是其还款的2倍以上。如果收入不够可增加担保人或与他人共借。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0201703.html" target="_blank"
+                                                        data-lj_dianji="baike18352" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0201703.html">
+                                                        <div class="tit">购买二手房，按揭贷款的流程是哪些？</div>
+                                                        <div class="subtit">二手房按揭贷款主要有包含以下流程：评估、出预评、面签、批贷、过户、领证、抵押、放款。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/066554.html" target="_blank"
+                                                        data-lj_dianji="baike12399" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/066554.html">
+                                                        <div class="tit">二手房评估价会影响贷款额度吗</div>
+                                                        <div class="subtit">
+                                                            二手房评估价结合待评估房屋的实际情况，包括面积、楼层、朝向、装修状况、其它特征因素，等等，计算出该房屋相对科学合理的市场参考价，同时也会影响着银行的贷款额度。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/09031.html" target="_blank"
+                                                        data-lj_dianji="baike1612" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/09031.html">
+                                                        <div class="tit">年利率和还款系数是什么意思？</div>
+                                                        <div class="subtit">
+                                                            年利率，决定了一年会有多少利息。如果是贷款，年利率高低直接影响贷款人承担的利息和月供。而“还款系数”是帮助迅速计算贷款多少钱，需要还多少月供。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0048/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-05"></div>
+                                        <div class="tit">缴税/过户</div>
+                                        <div class="subtit">税费算明白了吗，过户流程还不懂？教您产权拿到手</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0398031.html" target="_blank"
+                                                        data-lj_dianji="baike23522" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0398031.html">
+                                                        <div class="tit">二手房交易中，买卖双方户口如何处置？</div>
+                                                        <div class="subtit">
+                                                            二手房交易后户口如何安置，对买卖双方来说至关重要，但却容易被忽视，也容易发生纠纷，一旦出现问题，会影响房屋交易的正常进行，甚至会对购房人产生较大损失。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0200395.html" target="_blank"
+                                                        data-lj_dianji="baike18353" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0200395.html">
+                                                        <div class="tit">买卖二手房延期过户有什么风险？</div>
+                                                        <div class="subtit">
+                                                            房屋交易常会出现延期过户的现象，卖方延期，买方可以要求解除合同。延期过户存在一定的风险，基本上也没有规避的办法。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0185079.html" target="_blank"
+                                                        data-lj_dianji="baike18354" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0185079.html">
+                                                        <div class="tit">二手房减免契税，买方需要提供哪些证件资料？</div>
+                                                        <div class="subtit">
+                                                            契税是以所有权发生转移变动的不动产为征税对象，向产权承受人征收的一种财产税。在二手房交易中，契税占了很大一部分的费用，要想减免一定的税费，购买者需要准备相应的证件材料。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/095180.html" target="_blank"
+                                                        data-lj_dianji="baike12304" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/095180.html">
+                                                        <div class="tit">房子过户给父母，怎样做才最省钱</div>
+                                                        <div class="subtit">
+                                                            房子过户给父母的方式有两种，一种是以赠与方式进行过户，另一种是以买卖方式进行过户。具体采用哪种方式，得根据实际情况来。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/07982.html" target="_blank"
+                                                        data-lj_dianji="baike1654" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/07982.html">
+                                                        <div class="tit">买房过户流程怎么走？买房过户必备</div>
+                                                        <div class="subtit">买房过户宜早不宜迟，买房过户要准备很多材料，一定要尽早办理好过户手续。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/089062.html" target="_blank"
+                                                        data-lj_dianji="baike12198" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/089062.html">
+                                                        <div class="tit">房屋交易丨房屋继承、赠与等相关缴税费用</div>
+                                                        <div class="subtit">
+                                                            房屋除开正常交易以外，还有很多交易方式，例如继承、赠与等，但不管哪种交易方式，都要缴纳一定的税费或别的费用，那么缴费基数是如何计算的呢？又有哪些其他费用需要缴纳呢？
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0049/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-06"></div>
+                                        <div class="tit">入住/交接</div>
+                                        <div class="subtit">物业交接做什么，装修新房无风格？入住攻略帮你答</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0347188.html" target="_blank"
+                                                        data-lj_dianji="baike23526" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0347188.html">
+                                                        <div class="tit">只需三步，让你的房子在冬天更加暖和</div>
+                                                        <div class="subtit">想要过一个暖和的冬天，就得好好布置，让房屋暖和起来。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0403572.html" target="_blank"
+                                                        data-lj_dianji="baike23525" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0403572.html">
+                                                        <div class="tit">买装修过的二手房需要留心哪些地方？</div>
+                                                        <div class="subtit">购房者在看装修过的二手房时，要注意观察一些隐蔽的地方。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0202943.html" target="_blank"
+                                                        data-lj_dianji="baike18355" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0202943.html">
+                                                        <div class="tit">二手房在收房时有哪些注意事项？</div>
+                                                        <div class="subtit">
+                                                            在收房时，主要需要注意以下几个问题：检查房屋本身的质量问题，看房屋的各种费用是否结清以及将房屋的其他问题核对清楚。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0186638.html" target="_blank"
+                                                        data-lj_dianji="baike18356" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0186638.html">
+                                                        <div class="tit">购买二手房，物业费该如何缴纳？</div>
+                                                        <div class="subtit">
+                                                            二手房交易中，买卖双方往往会涉及诸多费用的交割，其中就包括物业费。物业费因其在购买过程中处于“隐身”状态，常会被买方忽略，买卖双方也会因此产生一些不愉快的纠纷。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/012930.html" target="_blank"
+                                                        data-lj_dianji="baike12393" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/012930.html">
+                                                        <div class="tit">二手房交房时有什么要注意的细节？</div>
+                                                        <div class="subtit">
+                                                            在二手房交房时，有些细节很容易被忽视，这需要大家引起注意。比如买方是否已到税务局开具全额房款发票、房屋内的电话是否已前往电信公司办理更名手续等。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/012848.html" target="_blank"
+                                                        data-lj_dianji="baike12206" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/012848.html">
+                                                        <div class="tit">11类不能交易的二手房</div>
+                                                        <div class="subtit">
+                                                            在购买二手房的时候，要特别注意，某些二手房存在着很大的风险，根据我国《城市房地产管理法》的规定，下列房地产不得转让。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0050/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-07"></div>
+                                        <div class="tit">买房风险</div>
+                                        <div class="subtit">你遇到什么风险，怎么规避有招吗？避险支招不上当</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0192226.html" target="_blank"
+                                                        data-lj_dianji="baike18358" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0192226.html">
+                                                        <div class="tit">新买的二手房漏水，该怎么办？</div>
+                                                        <div class="subtit">新买的二手房出现漏水的现象，户主首先要查明漏水的原因，从根源处寻求解决办法。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0216700.html" target="_blank"
+                                                        data-lj_dianji="baike18357" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0216700.html">
+                                                        <div class="tit">房子登记在子女名下，可能会有哪些风险？</div>
+                                                        <div class="subtit">
+                                                            房子登记在子女名下，可能会遇到这些风险：买房需要一次性付款、父母不能随意处置房屋、父母无权收回房屋。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/035398.html" target="_blank"
+                                                        data-lj_dianji="baike12402" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/035398.html">
+                                                        <div class="tit">二手房交易九大注意事项 这些风险要小心</div>
+                                                        <div class="subtit">
+                                                            有相当一部分人愿意购买二手房，可以省去不少装修烦恼，但是二手房交易有很多事项要注意，这些风险一定要小心。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/046809.html" target="_blank"
+                                                        data-lj_dianji="baike12403" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/046809.html">
+                                                        <div class="tit">买二手房如何规避常见风险？</div>
+                                                        <div class="subtit">
+                                                            二手房买卖中隐藏着一些风险，当你是新手时，往往不知不觉就会落入到这些风险当中，那么我们该如何去规避这些常见风险呢？
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/08589.html" target="_blank"
+                                                        data-lj_dianji="baike1541" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/08589.html">
+                                                        <div class="tit">哪些二手房是不能买卖的？再便宜都不能买</div>
+                                                        <div class="subtit">
+                                                            哪些二手房是不能买卖的？在购买二手房的时候，要特别注意，有些二手房存在着很大的风险，根据我国《城市房地产管理法》的规定，下列十一类二手房属于不能上市交易的，遇到这些房再便宜都不能买。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/08548.html" target="_blank"
+                                                        data-lj_dianji="baike1548" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/08548.html">
+                                                        <div class="tit">买装修过的二手房好吗？这些小问题要注意</div>
+                                                        <div class="subtit">买装修过的二手房好吗？这些小问题要注意</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-inner ">
+                                <div class="card-item active"><a href="https://news.ke.com/cs/baike/0051/"
+                                        target="_blank" class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-01"></div>
+                                        <div class="tit">准备买房</div>
+                                        <div class="subtit">购房政策有哪些？如何才能买好房？你想知道的置业指南都在这</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0518346.html" target="_blank"
+                                                        data-lj_dianji="baike23527" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0518346.html">
+                                                        <div class="tit">买卖商铺，要注意哪些问题？</div>
+                                                        <div class="subtit">买卖商铺，注意三个问题可减少纠纷。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0297156.html" target="_blank"
+                                                        data-lj_dianji="baike23528" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0297156.html">
+                                                        <div class="tit">买房前需做好哪几方面的心理准备？</div>
+                                                        <div class="subtit">在购房前不仅需要对资金做好预算，还得要有其他方面的心理准备。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0231351.html" target="_blank"
+                                                        data-lj_dianji="baike18407" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0231351.html">
+                                                        <div class="tit">在长沙，买新房要经历哪些步骤？</div>
+                                                        <div class="subtit">
+                                                            买新房和二手房都有相应的流程。相对来说，买新房的流程更简单一些，一般包括准备买房-看房选房-认购-购房资质审核-付首付-签约-办理贷款-交税费-验房收房-交费入住。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0230708.html" target="_blank"
+                                                        data-lj_dianji="baike18408" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0230708.html">
+                                                        <div class="tit">买新房后，购房发票还有用吗？</div>
+                                                        <div class="subtit">
+                                                            购房发票是一个重要的票据，如果丢了会影响办理不动产权证、提取公积金、办理过户，甚至之后的房屋出售都会受到影响。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/029941.html" target="_blank"
+                                                        data-lj_dianji="baike12404" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/029941.html">
+                                                        <div class="tit">买房时，这些钱可以省</div>
+                                                        <div class="subtit">
+                                                            买房对于许多工薪阶层来说，已经是一笔很大的开销了。动辄几十万，甚至上百万，但是呢，花出去的这些钱，从节省上来说，有的其实是可以省去的。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/026083.html" target="_blank"
+                                                        data-lj_dianji="baike5220" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/026083.html">
+                                                        <div class="tit">现在买房还有哪些额外费用需要交纳？</div>
+                                                        <div class="subtit">
+                                                            现在人们买房除开买房的费用，还需要缴纳各种各样的费用，人们往往不清楚有哪些费用以及费用的多少。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0052/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-02"></div>
+                                        <div class="tit">看房/选房</div>
+                                        <div class="subtit">看房技巧都有啥？注意事项有哪些？给你提供最实用的选房攻略</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0341330.html" target="_blank"
+                                                        data-lj_dianji="baike23529" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0341330.html">
+                                                        <div class="tit">空气最好的楼层是几层？噪音最大的楼层是几层？</div>
+                                                        <div class="subtit">
+                                                            一栋房屋的4-5层从理论上气温、采光、空气污染、噪音污染都比较小，客观环境好一些；住在15-20层相对噪音会较大；相对高层住宅，1-3楼住宅的室内温度显得阴寒。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0475117.html" target="_blank"
+                                                        data-lj_dianji="baike23530" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0475117.html">
+                                                        <div class="tit">在售楼处，要小心哪些套路？</div>
+                                                        <div class="subtit">买房套路多，买房时一定要擦亮眼睛，谨慎又小心。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0242175.html" target="_blank"
+                                                        data-lj_dianji="baike18409" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0242175.html">
+                                                        <div class="tit">买新房，期房、准现房、现房有什么区别？</div>
+                                                        <div class="subtit">
+                                                            期房、准现房、现房的区别，主要体现在房屋性质、购房合同、入住时间、配套设施、房屋结构、房屋价格等方面。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0237567.html" target="_blank"
+                                                        data-lj_dianji="baike18410" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0237567.html">
+                                                        <div class="tit">楼层越高噪音就会越小吗？</div>
+                                                        <div class="subtit">
+                                                            有些购房者比较青睐买高楼层的房子，他们认为高楼层不仅空气好，而且受噪音污染少，但是这种观念是不正确的。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/027346.html" target="_blank"
+                                                        data-lj_dianji="baike5733" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/027346.html">
+                                                        <div class="tit">看清得房率猫腻 看清赠送面积不被忽悠</div>
+                                                        <div class="subtit">
+                                                            很多购房人买房之前都会对房地产名词作一些了解，比如得房率这个词就被很多购房者看重。知道什么是得房率？你知道得房率中藏有哪些猫腻吗？
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/088007.html" target="_blank"
+                                                        data-lj_dianji="baike12195" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/088007.html">
+                                                        <div class="tit">买房如何与开发商砍价？五招帮你节省钱</div>
+                                                        <div class="subtit">
+                                                            买房对于许多家庭来说是一件大事，动辄几十上百万，所以在买房时如何与开发商砍价，尽量用底价买到自己和家人心仪的房子成了重中之重。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0053/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-03"></div>
+                                        <div class="tit">认购新房</div>
+                                        <div class="subtit">定金交多少？排号如何选好房？为你解读认购过程中的注意事项</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0229396.html" target="_blank"
+                                                        data-lj_dianji="baike18411" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0229396.html">
+                                                        <div class="tit">房产交易需熟悉哪几“金”？有何区别？</div>
+                                                        <div class="subtit">
+                                                            在房产交易中，会先后涉及到认筹金、订金、诚意金、定金。定金是购房者买新房签订认购书时交的钱。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0206851.html" target="_blank"
+                                                        data-lj_dianji="baike18412" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0206851.html">
+                                                        <div class="tit">如何防范商品房认购书的陷阱？</div>
+                                                        <div class="subtit">买新房签认购书有许多注意事项，同时要防范一些风险。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/029521.html" target="_blank"
+                                                        data-lj_dianji="baike6590" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/029521.html">
+                                                        <div class="tit">买新房 如何和开发商谈判</div>
+                                                        <div class="subtit">
+                                                            我们买东西都可以谈价的，买房子也是一样。而且买房子这种事情谈价，不止点点，多谈点价格，可能你可以少出几千甚至几万。掌握谈判技巧很重要！
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/016505.html" target="_blank"
+                                                        data-lj_dianji="baike12193" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/016505.html">
+                                                        <div class="tit">什么是意向金？跟定金有什么区别？</div>
+                                                        <div class="subtit">
+                                                            意向金就是客户购房诚意金，在二手房交易中，如果买方对房子有购买意向，一般在没有见到业主之前，会先交一笔“意向金”给房产中介
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0054/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-04"></div>
+                                        <div class="tit">签约/定房</div>
+                                        <div class="subtit">签购房合同、补充协议注意啥？教你规避风险,拒绝合同陷阱</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0274077.html" target="_blank"
+                                                        data-lj_dianji="baike23531" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0274077.html">
+                                                        <div class="tit">买新房该注意哪“四金”？有何区别？</div>
+                                                        <div class="subtit">
+                                                            第一次买房，很多人搞不清条款，房屋中介或开发商让交的“金”很多，而它们有些可退，有些不能退，有些甚至不合法。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0157907.html" target="_blank"
+                                                        data-lj_dianji="baike18414" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0157907.html">
+                                                        <div class="tit">交纳定金时需要注意什么?什么情况下可以退定金?</div>
+                                                        <div class="subtit">
+                                                            定金是指买方在合同订立之前，或者支付房款之前向开发商或者卖方支付一定数额的金钱。如果说开发商“五证”不全，或者因为合同条款达不成一致意见，都可以退定金。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0261487.html" target="_blank"
+                                                        data-lj_dianji="baike18413" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0261487.html">
+                                                        <div class="tit">买期房签协议时应该注意什么问题？</div>
+                                                        <div class="subtit">购买期房在签协议时，除了查验相关文件，还需约定房屋交付时间、付款时间并确定违约责任。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/09147.html" target="_blank"
+                                                        data-lj_dianji="baike12677" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/09147.html">
+                                                        <div class="tit">买房交首付、签合同要注意哪些问题？</div>
+                                                        <div class="subtit">
+                                                            首先，要核实开发商的这五证，最主要的是看《国有土地使用证》和《商品房预售许可证》，这两证看准确了，一般原则上没有问题，特别是《商品房预售许可证》。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/012867.html" target="_blank"
+                                                        data-lj_dianji="baike12394" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/012867.html">
+                                                        <div class="tit">签订房屋买卖合同需要注意哪些问题？</div>
+                                                        <div class="subtit">签订买卖合同的时候需要注意的事项有很多，比如买卖双方的姓名、住所地址、房屋面积等等。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0055/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-05"></div>
+                                        <div class="tit">全款/贷款</div>
+                                        <div class="subtit">商业贷款、公积金贷款怎么办？为你提供最详细的贷款办理流程</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0275007.html" target="_blank"
+                                                        data-lj_dianji="baike23532" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0275007.html">
+                                                        <div class="tit">提前还贷怎么办理？有哪些注意事项？</div>
+                                                        <div class="subtit">
+                                                            贷款者如果想要办理提前还贷，请事先查看贷款合同中提前还款的要求并咨询相关银行，若符合条件，请携带好所需材料去相关银行进行办理。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0261574.html" target="_blank"
+                                                        data-lj_dianji="baike18415" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0261574.html">
+                                                        <div class="tit">婚前贷款买房需要注意些什么问题？</div>
+                                                        <div class="subtit">婚前贷款买房，要注意双方出资情况以及能否贷款等，避免日后引发一些不必要的纠纷。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0248127.html" target="_blank"
+                                                        data-lj_dianji="baike18416" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0248127.html">
+                                                        <div class="tit">买新房，全款买房好还是贷款买房好？</div>
+                                                        <div class="subtit">
+                                                            买新房，全款支付和贷款支付各有其优劣势，一般全款买房比贷款买房操作流程更加简单。具体选择支付方式可根据个人综合情况考虑。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/029332.html" target="_blank"
+                                                        data-lj_dianji="baike12679" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/029332.html">
+                                                        <div class="tit">申请贷款买房被拒 可能会有哪些原因？</div>
+                                                        <div class="subtit">
+                                                            随着越来越多的人加入有房族，同时也有越来越多的人发现房贷并不是说只要想贷就能贷到的。贷款并不是没有信用污点就一定能够贷到款。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/09065.html" target="_blank"
+                                                        data-lj_dianji="baike1609" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/09065.html">
+                                                        <div class="tit">住房公积金贷款和商业贷款买房的区别是什么？</div>
+                                                        <div class="subtit">
+                                                            我国购房贷款主要有商业贷款、公积金贷款两大类项。公积金便宜但是限制条件多，商贷贵，但是额度高，限制少。两者在性质、时间、利率、额度等方面均有区别。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0056/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-06"></div>
+                                        <div class="tit">收房/验房</div>
+                                        <div class="subtit">收房会遇到哪些问题？如何验房才放心？验房达人为你支招</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0327742.html" target="_blank"
+                                                        data-lj_dianji="baike23533" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0327742.html">
+                                                        <div class="tit">小区的物业管理包括哪些服务？</div>
+                                                        <div class="subtit">
+                                                            一般情况下，物业管理包括公共部分的维护管理、共用设施设备及其运行的维护和管理、专项维修资金的代管服务及环境卫生和绿化管理。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0449511.html" target="_blank"
+                                                        data-lj_dianji="baike23534" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0449511.html">
+                                                        <div class="tit">购买房屋，公摊面积越小越好吗？</div>
+                                                        <div class="subtit">
+                                                            如果设置配套齐全，虽然公摊面积大一些，但是小区整体配套会显得有档次。如一些两梯两户的户型跟一些两梯六户的户型，虽然在公摊面积上会有一些差异，但是公摊面积大的设计能让业主生活更方便。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0248285.html" target="_blank"
+                                                        data-lj_dianji="baike18417" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0248285.html">
+                                                        <div class="tit">收房时，发现这些质量问题应该谁来负责？</div>
+                                                        <div class="subtit">
+                                                            新房收房时，有些房屋的质量问题是需要开发商进行维修的，比如屋顶或墙面问题、门窗质量差、厨卫问题等。开发商如果不维修，业主可先向住建委举报，找仲裁委员会仲裁，或拿起法律的武器进行诉讼。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0223547.html" target="_blank"
+                                                        data-lj_dianji="baike18418" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0223547.html">
+                                                        <div class="tit">新房在收房时有哪些注意事项？</div>
+                                                        <div class="subtit">在房产交易中，收房也是有流程的。同时要注意在收房过程中存在的一些问题。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/020556.html" target="_blank"
+                                                        data-lj_dianji="baike12395" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/020556.html">
+                                                        <div class="tit">新房验收需要注意哪些方面</div>
+                                                        <div class="subtit">
+                                                            好不容易拿到房子了，很多人内心是非常激动的。但是激动过后，马上面临的就是验收的问题了，新房验收包括方方面面的内容，比如验墙壁、验水电、验防水、验管道、验地平、验层高、验层高、验其他项目等各个方面。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/014704.html" target="_blank"
+                                                        data-lj_dianji="baike12189" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/014704.html">
+                                                        <div class="tit">收房时要注意检查房子的哪些部分？</div>
+                                                        <div class="subtit">无论是买新房还是二手房，在收房时需要仔细检查房子的质量。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0057/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-07"></div>
+                                        <div class="tit">装修/入住</div>
+                                        <div class="subtit">装修都有啥风格？入住前需做好哪些准备？最全攻略在这里</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0449592.html" target="_blank"
+                                                        data-lj_dianji="baike23535" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0449592.html">
+                                                        <div class="tit">客厅的装修设计有什么要点？哪些雷区不能踩？</div>
+                                                        <div class="subtit">
+                                                            客厅是家居装修的重点，目前客厅装修都会选择在入口处设置玄关。装修客厅可以从空间、色彩、地面和软装饰四个方面着手。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0396851.html" target="_blank"
+                                                        data-lj_dianji="baike23536" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0396851.html">
+                                                        <div class="tit">房子隔音不好怎么办？窗户隔音该如何处理?</div>
+                                                        <div class="subtit">
+                                                            房子隔音不好，与隔音玻璃窗有直接关系，可以选择贴上窗户隔音膜、装上窗户隔音密封条、加一层普通塑钢窗、加一层隔音窗和改装成隔音窗这几种方式提高隔音效果。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0258978.html" target="_blank"
+                                                        data-lj_dianji="baike18419" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0258978.html">
+                                                        <div class="tit">开放式厨房和封闭式厨房该怎么选择？</div>
+                                                        <div class="subtit">
+                                                            现代厨房设计一般有开放式厨房和封闭式厨房两种，在选择厨房设计时可根据自身的装修喜好和饮食习惯作选择。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0163099.html" target="_blank"
+                                                        data-lj_dianji="baike18420" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0163099.html">
+                                                        <div class="tit">夏季装修好吗？需要注意什么问题？</div>
+                                                        <div class="subtit">
+                                                            夏季装修有好处，也有弊端。在装修的时候，需要注意的问题涉及到方方面面，比如安全、通风问题等。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/031852.html" target="_blank"
+                                                        data-lj_dianji="baike8132" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/031852.html">
+                                                        <div class="tit">4个方面教你降低装修预算</div>
+                                                        <div class="subtit">
+                                                            要知道的是，装修想要节省开支，并不是只有施工阶段才能做到，装修前期的准备工作，就能够为我们无形中省下很大一笔费用。如何才能避免装修中不必要的开支呢？一起来看看吧！
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/012911.html" target="_blank"
+                                                        data-lj_dianji="baike12186" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/012911.html">
+                                                        <div class="tit">新房入住交接的流程是怎么样的？</div>
+                                                        <div class="subtit">
+                                                            从拿到书面通知开始，大概会经历如下四个步骤。持有《入住通知书》和相关证件，在规定期限内，查验房子、交纳费用。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0058/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-08"></div>
+                                        <div class="tit">退房/维权</div>
+                                        <div class="subtit">什么情况下可以退房？如何维护自身权益？专家为你保驾护航</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0424545.html" target="_blank"
+                                                        data-lj_dianji="baike23537" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0424545.html">
+                                                        <div class="tit">开发商延期交房怎么办？</div>
+                                                        <div class="subtit">开发商延期交房，购房者可以先催告，然后要求解除合同，要求开发商承担违约责任，赔偿损失。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0430740.html" target="_blank"
+                                                        data-lj_dianji="baike23538" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0430740.html">
+                                                        <div class="tit">交房日期一再逾期，购房协议还有用吗？</div>
+                                                        <div class="subtit">开发商逾期交房属于违约行为，购房者可通过法律途径维护自身合法权益。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0202931.html" target="_blank"
+                                                        data-lj_dianji="baike18421" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0202931.html">
+                                                        <div class="tit">哪些情况下，购房者可以要求退房？</div>
+                                                        <div class="subtit">
+                                                            在房产交易中，如果出现开发商违约、没有卖房资质，房屋出现质量问题、面积差绝对值超过3%，购房者可以要求退房。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/092349.html" target="_blank"
+                                                        data-lj_dianji="baike12397" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/092349.html">
+                                                        <div class="tit">遇到这两种房屋质量问题，你可以申请退房</div>
+                                                        <div class="subtit">
+                                                            购买房屋时出现房屋主体结构质量不合格不能交付使用，交付使用后房屋主体结构质量经核验确属不合格、房屋质量问题严重影响正常居住使用时，购房者可申请退房。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/092349.html" target="_blank"
+                                                        data-lj_dianji="baike12303" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/092349.html">
+                                                        <div class="tit">遇到这两种房屋质量问题，你可以申请退房</div>
+                                                        <div class="subtit">
+                                                            购买房屋时出现房屋主体结构质量不合格不能交付使用，交付使用后房屋主体结构质量经核验确属不合格、房屋质量问题严重影响正常居住使用时，购房者可申请退房。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/087442.html" target="_blank"
+                                                        data-lj_dianji="baike12181" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/087442.html">
+                                                        <div class="tit">新房存在质量问题该如何维权</div>
+                                                        <div class="subtit">
+                                                            新房出现质量问题，我们可以通过自己与开发商谈判、司法诉讼等途径维护自己的正当权益，不过最重要的还是在交房入住前将房屋质量仔细检查，避免麻烦。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-inner ">
+                                <div class="card-item active"><a href="https://news.ke.com/cs/baike/0059/"
+                                        target="_blank" class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-01"></div>
+                                        <div class="tit">各国概况</div>
+                                        <div class="subtit">您了解海外购房政策法规和房价走势吗？向您速递海外房产趋势</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06364.html" target="_blank"
+                                                        data-lj_dianji="baike18" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06364.html">
+                                                        <div class="tit">在新西兰买房一定要请律师吗？律师起什么作用？</div>
+                                                        <div class="subtit">
+                                                            交易前需要给买家解释合同、说明要点、帮助买家了解权利义务；交易时需要进行资金监管、清晰产权；交易后保管合同、确保产权等。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06412.html" target="_blank"
+                                                        data-lj_dianji="baike19" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06412.html">
+                                                        <div class="tit">在加拿大，持绿卡和有国籍有什么区别？</div>
+                                                        <div class="subtit">
+                                                            区别在于仅有绿卡是没有选举权与被选举权的，也不能参与政府监管行业等涉及国家机密的工作，而且入籍加拿大意味着放弃原有国籍。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0060/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-02"></div>
+                                        <div class="tit">计划买房</div>
+                                        <div class="subtit">您买房是为了移民、留学、度假还是养老呢？为您规划置业类型</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/031188.html" target="_blank"
+                                                        data-lj_dianji="baike10240" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/031188.html">
+                                                        <div class="tit">在美国买房，买卖双方各需要承担哪些费用？</div>
+                                                        <div class="subtit">买家有5项必要支出，5项可能支出；卖家有5项必要支出，3项可能支出。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/020705.html" target="_blank"
+                                                        data-lj_dianji="baike10241" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/020705.html">
+                                                        <div class="tit">为了留学出国买房，需要考虑哪些因素？</div>
+                                                        <div class="subtit">
+                                                            考虑到留学生毕业后就离开的可能性，各国对留学生购房要求更为严格；从留学生自身的角度出发，要不要买房以及买哪里显得更为重要。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/040987.html" target="_blank"
+                                                        data-lj_dianji="baike10242" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/040987.html">
+                                                        <div class="tit">在国外买房，怎么看面积？</div>
+                                                        <div class="subtit">国外没有公摊面积的概念，房屋标注的面积就是实际使用面积。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/022235.html" target="_blank"
+                                                        data-lj_dianji="baike10243" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/022235.html">
+                                                        <div class="tit">在日本买房的流程是什么？有什么注意事项？</div>
+                                                        <div class="subtit">日本购房法律严谨，在日本看好房之后需要先提交购房申请，然后把握时间节点按流程操作即可。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06433.html" target="_blank"
+                                                        data-lj_dianji="baike77" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06433.html">
+                                                        <div class="tit">中国留学生在国外可以买房吗？适合买哪类房产？</div>
+                                                        <div class="subtit">
+                                                            在美国、加拿大、英国、澳大利亚、新西兰等都可以买房，留学生买房的资格不受限制，只是购房后的持有方式不同而已。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06417.html" target="_blank"
+                                                        data-lj_dianji="baike79" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06417.html">
+                                                        <div class="tit">什么是炒楼花？在国外炒楼花怎么样？</div>
+                                                        <div class="subtit">
+                                                            炒楼花是对买卖期房的一种称呼，是一种投资行为。美国、加拿大、澳大利亚、英国等大多数国家对炒楼花没有限制。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0061/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-03"></div>
+                                        <div class="tit">签约定房</div>
+                                        <div class="subtit">您明白协议合同、定金、审批等法律程序吗？为您指导签约细节</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/011693.html" target="_blank"
+                                                        data-lj_dianji="baike2361" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/011693.html">
+                                                        <div class="tit">在美国买房，签合同时要注意什么？</div>
+                                                        <div class="subtit">
+                                                            签订购房合同时要注意6项合同条款，包括房屋产权及所有权、买家付款方式、买卖后入住时间、费用分担与支付、法律规定需要报备的及取消合约的权力，以及购房特殊要求。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06448.html" target="_blank"
+                                                        data-lj_dianji="baike91" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06448.html">
+                                                        <div class="tit">海外购房合同审批需要多长时间？</div>
+                                                        <div class="subtit">
+                                                            合同审批时间短则一周，长则三个月甚至更久。受三点因素影响：购房人是否在购房当地、国内外合同邮寄时间及律师核验房屋的时间。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06473.html" target="_blank"
+                                                        data-lj_dianji="baike101" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06473.html">
+                                                        <div class="tit">海外买房有房产证吗？怎么证明房子归我所有呢？</div>
+                                                        <div class="subtit">
+                                                            澳大利亚、新西兰、美国、英国等国家没有房产证，购房合同或者地契认定房子归属你名下。而日本、韩国和国内一样是有房产证的。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0062/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-04"></div>
+                                        <div class="tit">银行贷款</div>
+                                        <div class="subtit">您知道海外贷款的利率期限以及还款抵押等规定吗？这里帮您算</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06454.html" target="_blank"
+                                                        data-lj_dianji="baike105" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06454.html">
+                                                        <div class="tit">国外贷款利率和国内区别在哪？有几种选择？</div>
+                                                        <div class="subtit">
+                                                            区别主要体现在利率计算方式上，在海外购房贷款时有3种利率计算方式：全程浮动利率、全程固定利率以及有限时间内的固定利率。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0063/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-05"></div>
+                                        <div class="tit">交易过户</div>
+                                        <div class="subtit">您清楚海外产权买卖、继承赠与等环节吗？告诉您海外交易费用</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06466.html" target="_blank"
+                                                        data-lj_dianji="baike111" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06466.html">
+                                                        <div class="tit">哪些国家需要收房产税？为什么国外房产税贵？</div>
+                                                        <div class="subtit">
+                                                            美国、加拿大、英国、澳大利亚、日本都需要征收房产税。房产税又叫生态税，因为不仅平衡了房价，还能减少资源浪费和环境污染。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06468.html" target="_blank"
+                                                        data-lj_dianji="baike112" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06468.html">
+                                                        <div class="tit">买澳大利亚的房子，哪些费用可以退税？</div>
+                                                        <div class="subtit">
+                                                            在澳买房，相关的所有费用基本都可退税，包括房屋贷款相关的费用、地税、差旅费等，一般是由会计师来帮助买主完成这些事项。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0064/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-06"></div>
+                                        <div class="tit">房屋代理</div>
+                                        <div class="subtit">您懂得海外房产委托管理、房屋再售吗？提供规避投资风险指南</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06481.html" target="_blank"
+                                                        data-lj_dianji="baike122" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06481.html">
+                                                        <div class="tit">国外的房子从哪些渠道可以找到租客？</div>
+                                                        <div class="subtit">
+                                                            两种途径寻找租客：自己出租要注意核实租客的信用状况，出租后要定期管理租客；委托专业的房屋代理公司管理，付费后无需操心。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/06483.html" target="_blank"
+                                                        data-lj_dianji="baike123" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/06483.html">
+                                                        <div class="tit">海外房子必须买房屋保险吗？理赔范围包括什么？</div>
+                                                        <div class="subtit">
+                                                            房子有按揭贷款，则必须购买房屋保险，没有就自己选择。一般理赔范围包括自然灾害、修缮改良等房屋相关的，还包括第三方责任险。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-inner ">
+                                <div class="card-item active"><a href="https://news.ke.com/cs/baike/0066/"
+                                        target="_blank" class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-01"></div>
+                                        <div class="tit">准备卖房</div>
+                                        <div class="subtit">怎么给房子合理报价？多种出售方案供你参考</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0264359.html" target="_blank"
+                                                        data-lj_dianji="baike18423" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0264359.html">
+                                                        <div class="tit">卖房如何给房屋定价，有哪些注意事项？</div>
+                                                        <div class="subtit">
+                                                            卖房并不是一件简单的事情，把握好买房的技巧是买房的前提，建议在卖房前把卖房子过程中相关的注意事项都了解一下，那到底卖房的技巧以及注意事项都有哪些呢。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0237027.html" target="_blank"
+                                                        data-lj_dianji="baike18424" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0237027.html">
+                                                        <div class="tit">委托中介卖房，如何避免产生纠纷？</div>
+                                                        <div class="subtit">为避免陷入纠纷，售房者在委托中介卖房前，有些问题一定要知道。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/031386.html" target="_blank"
+                                                        data-lj_dianji="baike7921" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/031386.html">
+                                                        <div class="tit">想换房 这些你必须知道</div>
+                                                        <div class="subtit">
+                                                            有一部分人买房的因为需要换房，原来的房子不够住或者各种情况，那么换房需要知道什么呢，今天我们一起了解下。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/037501.html" target="_blank"
+                                                        data-lj_dianji="baike12406" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/037501.html">
+                                                        <div class="tit">卖房应该如何规避风险</div>
+                                                        <div class="subtit">
+                                                            在卖房的过程中，由于交易额大，时间长，所以说交易会存在一定的风险。那么该怎样规避风险呢，今天我们一起来探讨下。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/030373.html" target="_blank"
+                                                        data-lj_dianji="baike12405" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/030373.html">
+                                                        <div class="tit">如何让房子更好卖</div>
+                                                        <div class="subtit">想卖房的人在卖房前做好以下五件事，可以让房屋更易卖出。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/024583.html" target="_blank"
+                                                        data-lj_dianji="baike4618" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/024583.html">
+                                                        <div class="tit">房价的影响因素有哪些 售房者应如何定价</div>
+                                                        <div class="subtit">
+                                                            房价的影响因素有哪些，售房者该如何定价这个是很多人关心的问题。今天初夏就和大家一起来探讨下这个问题。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0067/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-02"></div>
+                                        <div class="tit">产权核验</div>
+                                        <div class="subtit">你知道如何核验房产么？教你排查卖房产权风险</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/096173.html" target="_blank"
+                                                        data-lj_dianji="baike12400" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/096173.html">
+                                                        <div class="tit">为什么有房屋核验，还需要资金监管</div>
+                                                        <div class="subtit">房屋核验，并不能完全避免所有的风险，而资金监管是二手房交易中最规范的操作。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/094049.html" target="_blank"
+                                                        data-lj_dianji="baike12306" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/094049.html">
+                                                        <div class="tit">什么是房源核验？注意事项是什么？</div>
+                                                        <div class="subtit">
+                                                            房源核验是二手房交易过程中的一个重要环节，它包含核验房屋证载的房屋所有权证号/不动产权证书、是否存在查封、异议登记、抵押等限制交易信息等。这个步骤也是必不可少的。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/08096.html" target="_blank"
+                                                        data-lj_dianji="baike1590" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/08096.html">
+                                                        <div class="tit">什么是“小产权房”？“小产权房”有什么不好？</div>
+                                                        <div class="subtit">“小产权房”，并不是一个法律上的概念，只是人们在实践过程中约定俗成的称呼。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0068/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-03"></div>
+                                        <div class="tit">收定金/签约</div>
+                                        <div class="subtit">签合同要注意啥？教你看懂合同，保障合法权利</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0260720.html" target="_blank"
+                                                        data-lj_dianji="baike18425" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0260720.html">
+                                                        <div class="tit">产权人是老年人，卖房签约需要注意什么？</div>
+                                                        <div class="subtit">
+                                                            二手房交易市场中，部分业主年龄较大，买方会有担忧：业主是否能否独立表达自己的意思、若是在交易过程中出现了特殊情况，交易能否继续等等。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0257725.html" target="_blank"
+                                                        data-lj_dianji="baike18426" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0257725.html">
+                                                        <div class="tit">卖房签约，哪些情况合同无效？</div>
+                                                        <div class="subtit">
+                                                            签约人不是合法签约人、合同内容不合法、不能如实反映买卖双方真实意愿而签订的合同都属于无效合同。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/089226.html" target="_blank"
+                                                        data-lj_dianji="baike12180" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/089226.html">
+                                                        <div class="tit">二手房签约时的注意事项</div>
+                                                        <div class="subtit">
+                                                            在签约时，业主的配偶是否也要到场？哪些人才是合法签约人？在签约时有哪些注意事项？链链君整理了一系列资料为大家答疑解惑。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/039773.html" target="_blank"
+                                                        data-lj_dianji="baike12204" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/039773.html">
+                                                        <div class="tit">定金与订金的区别 这个你必须知道</div>
+                                                        <div class="subtit">
+                                                            买房交定金，不知道从什么时候开始，已经成为了买房一个必不可少的步骤，无论是购买新商品房，还是通过房产中介买二手房，都会经历这一步。关于定金，其实也是大有学问。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0069/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-04"></div>
+                                        <div class="tit">分步收款</div>
+                                        <div class="subtit">房款什么时候能拿到？详述不同的付款方式，不同拿钱时间</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/095593.html" target="_blank"
+                                                        data-lj_dianji="baike18428" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/095593.html">
+                                                        <div class="tit">按揭贷款与抵押贷款的区别</div>
+                                                        <div class="subtit">按揭贷款与抵押贷款最大不同就是在于贷款用途、贷款成本、贷款期限及所受政策影响这四大方面。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0237029.html" target="_blank"
+                                                        data-lj_dianji="baike18427" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0237029.html">
+                                                        <div class="tit">卖房收款很重要，哪些方式更安全？</div>
+                                                        <div class="subtit">
+                                                            二手房交易过程中，对于业主来说收款是最重要的一环。为了不在这个环节出现纰漏减少出现钱、房两失的情况发生，安全交接房款的四种方式业主需要知道。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/095692.html" target="_blank"
+                                                        data-lj_dianji="baike12310" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/095692.html">
+                                                        <div class="tit">什么是网签？网签时的相关事项有哪些？</div>
+                                                        <div class="subtit">网签是房屋交易中重要的一环，有些房屋是不能进行网签，同时填写时信息要与户籍上信息一致。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/095593.html" target="_blank"
+                                                        data-lj_dianji="baike12309" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/095593.html">
+                                                        <div class="tit">按揭贷款与抵押贷款的区别</div>
+                                                        <div class="subtit">按揭贷款与抵押贷款最大不同就是在于贷款用途、贷款成本、贷款期限及所受政策影响这四大方面。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/094866.html" target="_blank"
+                                                        data-lj_dianji="baike12308" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/094866.html">
+                                                        <div class="tit">二手房交易时，卖方分步收款都有什么款项</div>
+                                                        <div class="subtit">
+                                                            二手房交易过程中，全款购房，卖方可以收到定金、房款、物业交割保证金、户口迁出保证金。贷款买房，卖方可以收到定金、首付款、贷款部分、物业交割保证金、户口迁出保证金。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0070/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-05"></div>
+                                        <div class="tit">缴税/过户</div>
+                                        <div class="subtit">房子要交多少税？这些资料和流程你要知道</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/052167.html" target="_blank"
+                                                        data-lj_dianji="baike12401" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/052167.html">
+                                                        <div class="tit">二手房过户材料、流程、费用有哪些</div>
+                                                        <div class="subtit">
+                                                            在二手房买卖时，我们往往涉及到二手房过户的问题，那么，二手房过户的材料、流程、费用有哪些呢？</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/095751.html" target="_blank"
+                                                        data-lj_dianji="baike12312" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/095751.html">
+                                                        <div class="tit">房屋交易时迟迟不过户会有什么风险</div>
+                                                        <div class="subtit">
+                                                            房屋交易中，买方会因为各种原因迟迟不过户，但房屋一旦不过户，一旦发生政策变动、卖方单方面变动等原因将会造成极大风险。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/095008.html" target="_blank"
+                                                        data-lj_dianji="baike12311" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/095008.html">
+                                                        <div class="tit">二手房个人所得税是指什么？必须要交吗？</div>
+                                                        <div class="subtit">
+                                                            个人所得税是二手房交易过程中的一个重要费用，但是整个费用并非一定要交，如果购买的房子满足满五唯一的条件，就可以免征个人所得税。否则，必须缴纳个人所得税。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0071/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-06"></div>
+                                        <div class="tit">交房须知</div>
+                                        <div class="subtit">想要顺利交接不拖欠?你要提前准备好这些</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0233456.html" target="_blank"
+                                                        data-lj_dianji="baike18429" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0233456.html">
+                                                        <div class="tit">买二手房，遗留的物业费应该谁来付？</div>
+                                                        <div class="subtit">在二手房交易时，遗留的物业费与购房者无关，应该由卖方来承担所欠费用。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/094210.html" target="_blank"
+                                                        data-lj_dianji="baike18430" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/094210.html">
+                                                        <div class="tit">二手房交易过程中，顶楼交房注意事项</div>
+                                                        <div class="subtit">
+                                                            顶楼交房比其他楼层更需要注意，尤其是防水、水压、安全这几个方面。顶楼的防水是什么时候做的，效果如何，可以用多久，日后维修需要联系那个部门或是物业，费用怎么缴纳都要问清楚。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/093434.html" target="_blank"
+                                                        data-lj_dianji="baike12314" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/093434.html">
+                                                        <div class="tit">买二手房，收房时要注意什么？</div>
+                                                        <div class="subtit">
+                                                            二手房交易时，到了交房这一步，往往意味着整个交易流程快要结束。但是，大家千万别掉以轻心！要做好一些工作的结清、过户，如物业费、水电费结清、电话和宽带费用的结清、户口迁移、有线电视过户、维修基金结算等。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/092897.html" target="_blank"
+                                                        data-lj_dianji="baike12313" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/092897.html">
+                                                        <div class="tit">二手房物业交割的流程是什么？常见问题有哪些？</div>
+                                                        <div class="subtit">
+                                                            二手房交易的过程中，我们会遇到物业交割的问题。这一步完成在过户之后，原房主要处理相关水电等各方面的费用。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/094210.html" target="_blank"
+                                                        data-lj_dianji="baike12307" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/094210.html">
+                                                        <div class="tit">二手房交易过程中，顶楼交房注意事项</div>
+                                                        <div class="subtit">
+                                                            顶楼交房比其他楼层更需要注意，尤其是防水、水压、安全这几个方面。顶楼的防水是什么时候做的，效果如何，可以用多久，日后维修需要联系那个部门或是物业，费用怎么缴纳都要问清楚。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0072/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-07"></div>
+                                        <div class="tit">卖房风险</div>
+                                        <div class="subtit">卖房有哪些风险？提前教你规避掉~</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0214471.html" target="_blank"
+                                                        data-lj_dianji="baike18431" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0214471.html">
+                                                        <div class="tit">卖房时，哪些情况需要卖方做公证？</div>
+                                                        <div class="subtit">
+                                                            公证是在发生民事争议之前，对法律行为和有法律意义的文书、事实的真实性和合法性给予认可，借以防止纠纷，减少诉讼。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0164687.html" target="_blank"
+                                                        data-lj_dianji="baike18432" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0164687.html">
+                                                        <div class="tit">房子突然不想卖了可以吗？存在什么风险？</div>
+                                                        <div class="subtit">如果说已经签订合同，房子突然不想卖了，会让房东造成违约，从而带来经济损失。</div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/096197.html" target="_blank"
+                                                        data-lj_dianji="baike12398" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/096197.html">
+                                                        <div class="tit">房贷没还完的房子能买吗？怎么办？</div>
+                                                        <div class="subtit">
+                                                            在交易过程中，很多购房者会遇到这么一种情况：遇到心仪的房子，但是卖方的房贷还没还完。购房者难免担心这样的房子是否可以交易。是的，如果买到还未还完贷款的房子，是会存在一定的风险的。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/087364.html" target="_blank"
+                                                        data-lj_dianji="baike12170" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/087364.html">
+                                                        <div class="tit">不通过中介卖房可以吗，有什么风险</div>
+                                                        <div class="subtit">
+                                                            在二手房交易的过程中，有的业主不想通过中介卖房，而是想私下进行交易。其实这存在很大风险。比如，业主会花费大量时间带看，又或者容易造成违约风险等等。而通过中介，可以安心卖房，规避风险。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-inner ">
+                                <div class="card-item active"><a href="https://news.ke.com/cs/baike/0073/"
+                                        target="_blank" class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-01"></div>
+                                        <div class="tit">准备换房</div>
+                                        <div class="subtit">您该换房了吗？知道在什么时候换吗？这里让您为换房做足准备</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0230193.html" target="_blank"
+                                                        data-lj_dianji="baike18433" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0230193.html">
+                                                        <div class="tit">什么是改善房，换房如何选择改善房？</div>
+                                                        <div class="subtit">改善房即改善型住房，面积一般为100平米以上，生活配套优良，环境宜居等。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0224405.html" target="_blank"
+                                                        data-lj_dianji="baike18434" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0224405.html">
+                                                        <div class="tit">家里有小孩，换房应该注意什么？</div>
+                                                        <div class="subtit">
+                                                            二胎出台，许多家庭人口增加，就想要换一个空间更大更适合孩子生活的房子，家里有小孩，换房需要注意的问题一般有户型、配套设施、房屋设计等。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/089885.html" target="_blank"
+                                                        data-lj_dianji="baike12178" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/089885.html">
+                                                        <div class="tit">购房指南：换房前你需要考虑的几大问题</div>
+                                                        <div class="subtit">
+                                                            换房不是一件简单的事情，它得考虑方方面面的因素。比如千万不要盲目追求低价房、最好选择成熟品牌房企、对居住环境的高品质要求和贷款方式的选择等。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/089861.html" target="_blank"
+                                                        data-lj_dianji="baike12179" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/089861.html">
+                                                        <div class="tit">怎样根据换房的目的进行选房</div>
+                                                        <div class="subtit">
+                                                            换房大军也是一类主要的购房人群，他们的换房目的不尽相同，或是工作需要，或是小孩需要。但是，不管你的换房目的是什么，都得根据自己的实际情况来。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0074/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-02"></div>
+                                        <div class="tit">换房方案</div>
+                                        <div class="subtit">换房应该“先买后卖”还是“先卖后买”？专业换房方案供您参考</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0234390.html" target="_blank"
+                                                        data-lj_dianji="baike18435" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0234390.html">
+                                                        <div class="tit">换房时，如何判断房子各功能区的优劣？</div>
+                                                        <div class="subtit">换房时，所选户型的结构布局很重要，各功能区的位置、朝向、面积等要注意。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0228971.html" target="_blank"
+                                                        data-lj_dianji="baike18436" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0228971.html">
+                                                        <div class="tit">计划二胎，刚改族换房该如何选择？</div>
+                                                        <div class="subtit">
+                                                            刚改族因计划二胎选择换房，有些问题需要注意，比如是否还具有购房资质、自身的经济情况、周边的教育配套等等。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0075/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-03"></div>
+                                        <div class="tit">卖旧/买新</div>
+                                        <div class="subtit">想知道怎么卖房吗？想知道如何估价吗？这里为您提供必备指南</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0077/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-04"></div>
+                                        <div class="tit">缴税/过户</div>
+                                        <div class="subtit">税费杂乱怎么算？过户流程如何理？这里给您专业的过户交接指导</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/092797.html" target="_blank"
+                                                        data-lj_dianji="baike12316" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/092797.html">
+                                                        <div class="tit">什么是满五唯一？如何判断是否满五唯一？</div>
+                                                        <div class="subtit">
+                                                            换房后很多人都会涉及到再次购房，若再次购买，遇到“满五唯一”的房子就会便宜一些。“满五唯一”是指购房者拥有房屋的时间等于或超过5年，所有家庭成员名下在该省份内，登记在房产局系统里的有且只有这一套房子。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/08622.html" target="_blank"
+                                                        data-lj_dianji="baike12315" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/08622.html">
+                                                        <div class="tit">房产过户需要什么手续?买卖、赠与、继承流程一览</div>
+                                                        <div class="subtit">
+                                                            房产过户需要什么手续？常见的房产过户方式有买卖、赠与、继承三种，每一种方式的流程、办理手续也不相同。</div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0078/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-05"></div>
+                                        <div class="tit">交房/收房</div>
+                                        <div class="subtit">收房收什么？物业交割交什么？为您呈现必备的入住交接实操指南</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0218385.html" target="_blank"
+                                                        data-lj_dianji="baike18437" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0218385.html">
+                                                        <div class="tit">卖旧买新，物业费怎么交割？</div>
+                                                        <div class="subtit">
+                                                            物业交割是房产交易的最终环节，物业交割完毕，原户主将钥匙交给购房者，整个二手房交易完成。但是，物业交割事项繁琐，存在许多风险，容易引起纠纷，需要注意。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/088743.html" target="_blank"
+                                                        data-lj_dianji="baike18438" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/088743.html">
+                                                        <div class="tit">房屋装修后六大验房方法</div>
+                                                        <div class="subtit">
+                                                            很多购房者以为装修后就可以直接拎包入住，殊不知装修后自己验房更重要，一些细节方面如果装修时没有弄好，会影响到日后的居住。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/030692.html" target="_blank"
+                                                        data-lj_dianji="baike7424" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/030692.html">
+                                                        <div class="tit">毛坯房、精装房、二手房收房入住注意哪些？</div>
+                                                        <div class="subtit">
+                                                            如今，买房已经是人生最重要的事情之一，但我们要是光会挣钱买房是没用，光会跑场看房也没用，最需要关注的是你到手的房子和想象是否一样，所以收房是很关键的一步。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/088047.html" target="_blank"
+                                                        data-lj_dianji="baike12171" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/088047.html">
+                                                        <div class="tit">个人收房时应携带哪些工具检测房屋质量</div>
+                                                        <div class="subtit">
+                                                            当开发商通知收房时一定要经过自己仔细检查后才能同意收房，并且在收房过程中，只需要携带生活中几个常见的工具，就能简单高效的检查出房屋存在的一些基础质量问题。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/088743.html" target="_blank"
+                                                        data-lj_dianji="baike12176" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/088743.html">
+                                                        <div class="tit">房屋装修后六大验房方法</div>
+                                                        <div class="subtit">
+                                                            很多购房者以为装修后就可以直接拎包入住，殊不知装修后自己验房更重要，一些细节方面如果装修时没有弄好，会影响到日后的居住。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-item "><a href="https://news.ke.com/cs/baike/0079/" target="_blank"
+                                        class="btn-more">更多</a>
+                                    <div class="card-hd">
+                                        <div class="index index-06"></div>
+                                        <div class="tit">换房风险</div>
+                                        <div class="subtit">换房有什么风险，应该注意什么？最专业的风险评估让您换房无忧</div>
+                                    </div>
+                                    <div class="card-bd">
+                                        <div class="u-carousel carousel-card">
+                                            <div class="carousel-controls">
+                                                <div class="carousel-control carousel-control-prev">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                                <div class="carousel-control carousel-control-next">
+                                                    <div class="icon-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-inners">
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0224271.html" target="_blank"
+                                                        data-lj_dianji="baike18439" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0224271.html">
+                                                        <div class="tit">换房时，该不该委托中介？</div>
+                                                        <div class="subtit">
+                                                            换房繁琐而耗时，许多人在换房时会选择委托中介，这样可以节省时间，并且中介有一套完善的交易流程，效率也会更高。当然，如果不委托中介也可以自行处理，但需要注意一些问题。
+                                                        </div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/0218243.html" target="_blank"
+                                                        data-lj_dianji="baike18440" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/0218243.html">
+                                                        <div class="tit">卖旧买新，如何规划资金？</div>
+                                                        <div class="subtit">
+                                                            换房涉及一卖一买，很多换房者都是提前签约定好新的房子，然后再着手出售自己的旧房。但是如果遇到旧房难以出售的情况，就有可能面临违约担责。
+                                                        </div>
+                                                    </a></div>
+                                                <div class="carousel-inner"><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/034259.html" target="_blank"
+                                                        data-lj_dianji="baike8545" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/034259.html">
+                                                        <div class="tit">换房必知攻略 这样卖掉二手房才最安全</div>
+                                                        <div class="subtit">在换房过程中，我们有些攻略必须要知道，这样卖掉二手房才最安全。</div>
+                                                    </a><a class="card-one LOGCLICK"
+                                                        href="https://news.ke.com/cs/baike/087476.html" target="_blank"
+                                                        data-lj_dianji="baike12169" data-log_id="10001" data-bl="detail"
+                                                        data-el="https://news.ke.com/cs/baike/087476.html">
+                                                        <div class="tit">在换房的过程中如何才能控制时效不违约</div>
+                                                        <div class="subtit">
+                                                            在换房过程中，有的人涉及到买房卖房同时进行的问题，这当中涉及的问题比较复杂，建议通过同一家中介公司进行操作，另外尽可能留长时间来付款。
+                                                        </div>
+                                                    </a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="u-affix">
+            <div class="wrap">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                houseinfo: {},
+                username1: '',
+                m: 0,
+            },
+            methods: {
+                exit: function () {
+                    sessionStorage.clear();
+                    window.location.href = 'home.html';
+                },
+            },
+            mounted() {
+                this.username1 = sessionStorage.getItem("username");
+                console.log(this.username1);
+                if (this.username1 != null) {
+                    this.m = 1
+                } else {
+                    this.m = 0
+                }
+            },
+
+
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

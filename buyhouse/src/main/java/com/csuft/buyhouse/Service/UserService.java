@@ -45,21 +45,13 @@ public class UserService {
 	RedisTemplate redisTemplate;
 
 	// 验证码登录
-	public void loginforCode(User user, HttpServletRequest request) {
+	public void loginforCode(User user) {
 		if (!user.getUserCode().equals(redisTemplate.opsForValue().get(user.getUserPhone()))) {
 			throw new PlatformException("验证码错误");
-		} else {
-			HttpSession session = request.getSession();
-			// 将数据存储到session中
-			session.setAttribute("username", user.getUserPhone());
-			// 获取session的Id
-			String sessionId = session.getId();
-			System.out.println(sessionId);
 		}
-
 	}
 
-	public void loginforPassword(User user, HttpServletRequest request) {
+	public void loginforPassword(User user) {
 		User query = new User();
 		query.setUserPassword(user.getUserPassword());
 		query.setUserPhone(user.getUserPhone());
@@ -67,14 +59,7 @@ public class UserService {
 		System.out.println(dbuser);
 		if (dbuser == null) {
 			throw new PlatformException("用户名或密码错误");
-		} else {
-			HttpSession session = request.getSession();
-			// 将数据存储到session中
-			session.setAttribute("username", user.getUserPhone());
-			// 获取session的Id
-			String sessionId = session.getId();
-			System.out.println(sessionId);
-		}
+		} 
 	}
 
 	// 更新密码

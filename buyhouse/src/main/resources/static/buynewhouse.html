@@ -107,6 +107,16 @@
                             v-on:click="sized(size);list()">{{size.content}}</button>
                     </span>
                 </div>
+                <!-- 物业类型 -->
+                <div class="form-group mt-2">
+                    <label for="">物业类型</label>
+                    <span v-for="(style, index) in styles" :key="index">
+                        <button v-if="style.show==false" type="button" class="btn btn-outline-info btn-sm ml-3"
+                            v-on:click="styled(style);list()">{{style.content}}</button>
+                        <button v-else type="button" class="btn btn-outline-info ml-3 btn-sm active"
+                            v-on:click="styled(style);list()">{{style.content}}</button>
+                    </span>
+                </div>
             </div>
         </div>
         <!-- 楼房信息 -->
@@ -119,8 +129,9 @@
                 <div class="col-md-7">
                     <div class="card-body">
                         <h3 v-on:click="handle(houseinfo.id)" class="bt-1">
-
-                            <a :href="url" class="card-title text-dark ">{{houseinfo.name}}</a></h3>
+                            <a :href="url" class="card-title text-dark ">{{houseinfo.name}}</a> <button class="btn">
+                                <span class="badge badge-primary">{{houseinfo.style}}</span>
+                            </button></h3>
                         <p class="card-text">位置：<span class="text-danger">
                                 {{houseinfo.urban}}区 {{houseinfo.address}}</span></p>
                         <p class="card-text">面积：<span class="text-danger">{{houseinfo.size}}㎡</span></p>
@@ -129,7 +140,7 @@
 
                 </div>
                 <div class="price col-md-2 mt-5">
-                    <p class="sup">总价<span class="text-danger" style="font-size:30px;">{{houseinfo.price}}</span>万/套
+                    <p class="sup">均价<span class="text-danger" style="font-size:30px;">{{houseinfo.price}}</span>元/平
                     </p>
                     </p>
                 </div>
@@ -156,8 +167,6 @@
             </ul>
 
         </nav>
-
-
         <div class="jumbotron jumbotron-fluid mb-0 mt-5 py-1 bg-dark clearfix">
             <div class="container pt-4">
                 <h1 class="text-center align-text-bottom text-light" style="font-size: 10px;">Copyright(c)2019
@@ -212,6 +221,32 @@
                             value: '望城'
                         },
                     ],
+                    styles: [{
+                            content: '住宅',
+                            show: false,
+                            value: '住宅'
+                        },
+                        {
+                            content: '别墅',
+                            show: false,
+                            value: '别墅'
+                        },
+                        {
+                            content: '商业',
+                            show: false,
+                            value: '商业'
+                        },
+                        {
+                            content: '写字楼',
+                            show: false,
+                            value: '写字楼'
+                        },
+                        {
+                            content: '底商',
+                            show: false,
+                            value: '底商'
+                        },
+                    ],
                     htypes: [{
                             content: '一室',
                             show: false,
@@ -239,34 +274,34 @@
                         },
                     ],
                     prices: [{
-                            content: '50万以下',
+                            content: '6000元/m²以下',
                             show: false,
                             value: 0,
                         },
                         {
-                            content: '50万-100万',
+                            content: '6000-8000元/m²',
                             show: false,
-                            value: 50,
+                            value: 6000,
                         },
                         {
-                            content: '100万-150万',
+                            content: '8000-10000元/m²',
                             show: false,
-                            value: 100,
+                            value: 8000,
                         },
                         {
-                            content: '150万-200万',
+                            content: '10000-12000元/m²',
                             show: false,
-                            value: 150,
+                            value: 10000,
                         },
                         {
-                            content: '200万-250万',
+                            content: '12000-14000元/m²',
                             show: false,
-                            value: 200,
+                            value: 12000,
                         },
                         {
-                            content: '250万以上',
+                            content: '14000元/m²以上',
                             show: false,
-                            value: 250,
+                            value: 14000,
                         }
                     ],
                     sizes: [{
@@ -305,6 +340,7 @@
                             value: 200
                         },
                     ],
+                    style: null,
                     htype: '',
                     price: '',
                     size: '',
@@ -329,6 +365,17 @@
                             this.htype = '';
                         } else {
                             this.htypes.forEach(s => {
+                                s.show = false;
+                            });
+                            su.show = true;
+                        }
+                    },
+                    styled: function (su) {
+                        if (su.show == true) {
+                            su.show = false;
+                            this.style = null;
+                        } else {
+                            this.styles.forEach(s => {
                                 s.show = false;
                             });
                             su.show = true;
@@ -380,6 +427,12 @@
                             }
 
                         });
+                        this.styles.forEach(s => {
+                            if (s.show == true) {
+                                this.style = s.value;
+                            }
+
+                        });
                         this.sizes.forEach(s => {
                             if (s.show == true) {
                                 this.size = s.value;
@@ -391,12 +444,13 @@
                                 this.urban = s.value;
                             }
                         });
-                        axios.post("/list.json", {
+                        axios.post("/listnewHouse.json", {
                                 size: this.size,
                                 room: this.htype,
                                 price: this.price,
                                 urban: this.urban,
                                 name: this.name,
+                                style: this.style,
                             })
                             .then(res => {
                                 this.indexs = [];
@@ -426,20 +480,17 @@
                         }
                     },
                     handle: function (id) {
-                        this.url = `detail.html?id=${id}`;
+                        this.url = `newhousedetail.html?id=${id}`;
                     }
-
-
                 },
                 mounted() {
                     this.username1 = sessionStorage.getItem("username");
-                    console.log(this.username1);
                     if (this.username1 != null) {
                         this.m = 1
                     } else {
                         this.m = 0
                     }
-                    axios.post("/list.json", {})
+                    axios.post("/listnewHouse.json", {})
                         .then(res => {
                             this.houseinfos = res.data.data;
                             for (i = 1; i <= (this.houseinfos.length / 6) + 1; i++) {

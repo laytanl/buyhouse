@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.csuft.buyhouse.Service.HouseInfoService;
+import com.csuft.buyhouse.Service.NewHouseInfoService;
 import com.csuft.buyhouse.entity.Application;
 import com.csuft.buyhouse.entity.HouseInfo;
+import com.csuft.buyhouse.entity.NewhouseInfo;
 import com.csuft.buyhouse.entity.UserInfo;
 import com.csuft.buyhouse.util.JsonResult;
 import com.csuft.buyhouse.util.PlatformException;
@@ -32,6 +34,8 @@ public class HouseInfoController {
 
 	@Autowired
 	HouseInfoService houseInfoService;
+	@Autowired
+	NewHouseInfoService newHouseInfoService;
 
 	@GetMapping("/sell")
 	public String index() {
@@ -49,18 +53,60 @@ public class HouseInfoController {
 	@PostMapping("/add.json")
 	@ResponseBody
 	public JsonResult add(@RequestBody HouseInfo houseInfo) {
-		System.out.println(houseInfo);
+		System.out.println(srcs.size());
 		if (srcs.size() == 4) {
 			houseInfo.setSrc(srcs.get(0));
 			houseInfo.setPicture1(srcs.get(1));
 			houseInfo.setPicture2(srcs.get(2));
 			houseInfo.setPicture3(srcs.get(3));
 			houseInfoService.add(houseInfo);
-		}
-		else {
+			srcs.clear();
+		} else {
 			throw new PlatformException("请上传四张图片");
 		}
 		return JsonResult.success();
+	}
+
+	// 管理员提交
+	@PostMapping("/addnewHouse.json")
+	@ResponseBody
+	public JsonResult add(@RequestBody NewhouseInfo newhouseInfo) {
+		System.out.println(srcs.size());
+		if (srcs.size() == 4) {
+			newhouseInfo.setSrc(srcs.get(0));
+			newhouseInfo.setPicture1(srcs.get(1));
+			newhouseInfo.setPicture2(srcs.get(2));
+			newhouseInfo.setPicture3(srcs.get(3));
+			newHouseInfoService.add(newhouseInfo);
+			srcs.clear();
+		} else {
+			throw new PlatformException("请上传四张图片");
+		}
+		return JsonResult.success();
+	}
+
+	@PostMapping("/listall.json")
+	@ResponseBody
+	public JsonResult<List<HouseInfo>> listall(@RequestBody HouseInfo houseInfo) {
+
+		List<HouseInfo> houseinfos = houseInfoService.queryByinfos(houseInfo);
+		return JsonResult.success(houseinfos);
+	}
+
+	@PostMapping("/pass.json")
+	@ResponseBody
+	public JsonResult<Integer> pass(@RequestBody HouseInfo houseInfo) {
+
+		houseInfoService.pass(houseInfo);
+		return JsonResult.success(houseInfo.getId());
+	}
+
+	@PostMapping("/nopass.json")
+	@ResponseBody
+	public JsonResult<Integer> nopass(@RequestBody HouseInfo houseInfo) {
+
+		houseInfoService.nopass(houseInfo);
+		return JsonResult.success(houseInfo.getId());
 	}
 
 	@PostMapping("/list.json")

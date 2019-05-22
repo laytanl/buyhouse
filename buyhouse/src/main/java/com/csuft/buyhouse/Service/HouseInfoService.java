@@ -43,12 +43,27 @@ public class HouseInfoService {
 			} else {
 				houseInfo1.setCollec(1);
 			}
-		}
-		else{
+		} else {
 			houseInfo1.setCollec(0);
 		}
 
 		return houseInfo1;
+	}
+
+	public List<HouseInfo> queryByinfos(HouseInfo houseInfo) {
+		List<HouseInfo> houseInfos = houseInfoDao.queryByinfos();
+		return houseInfos;
+	}
+
+	public void pass(HouseInfo houseInfo) {
+		houseInfo.setFlag(1);
+		houseInfoDao.updateTemplateById(houseInfo);
+
+	}
+
+	public void nopass(HouseInfo houseInfo) {
+		houseInfo.setFlag(2);
+		houseInfoDao.updateTemplateById(houseInfo);
 	}
 
 }

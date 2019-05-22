@@ -32,17 +32,17 @@ public class UserController {
 
 	@PostMapping("/loginforpassword.json")
 	@ResponseBody
-	public JsonResult loginforpassword(@RequestBody User user,HttpServletRequest request) {
+	public JsonResult loginforpassword(@RequestBody User user) {
 		System.out.println(user);
-		userService.loginforPassword(user,request);
+		userService.loginforPassword(user);
 		return JsonResult.success();
 	}
 	
 	@PostMapping("/loginforcode.json")
 	@ResponseBody
-	public JsonResult loginforcode(@RequestBody User user,HttpServletRequest request) {
+	public JsonResult loginforcode(@RequestBody User user) {
 		System.out.println(user);
-		userService.loginforCode(user,request);
+		userService.loginforCode(user);
 		return JsonResult.success();
 	}
 
@@ -66,8 +66,8 @@ public class UserController {
 	@ResponseBody
 	public JsonResult getcode(@RequestBody User user) {
 		System.out.println(user);
-		Integer code = 1234;
-	//	Integer code=CodeUtil.code(user.getUserPhone());
+		//Integer code = 1234;
+		Integer code=CodeUtil.code(user.getUserPhone());
 
 		redisTemplate.opsForValue().set(user.getUserPhone(), code.toString(), 60, TimeUnit.SECONDS);
 		System.out.println(redisTemplate.opsForValue().get(user.getUserPhone()));

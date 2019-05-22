@@ -36,19 +36,27 @@
                         <a class="nav-link" href="home.html">首页 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
-                        <a class="nav-link" href="buy.html">买房<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="buy.html">二手房<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="buynewhouse.html">新房<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
                         <a class="nav-link" href="sell.html">售房</a>
                     </li>
+
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="guide.html">指南</a>
+                    </li>
                 </ul>
                 <form v-if="m==0" class="form-inline m-2 my-lg-0">
+                    <h class="breadcrumb-item"><a href="managerlogin.html">管理</a></h>
                     <h class="breadcrumb-item"><a href="Login.html">登录</a></h>
                     <h class="breadcrumb-item"><a href="Register.html">注册</a></h>
                 </form>
                 <form v-else class="form-inline m-2 my-lg-0">
                     <h class="breadcrumb-item">欢迎您,<a href="userInfo.html" class="text-dark">{{username1}}</a></h>
-                    <button type="button" class="btn btn-outline-secondary btn-sm ml-2">退出</button>
+                    <button t v-on:click="exit()" ype="button" class="btn btn-outline-secondary btn-sm ml-2">退出</button>
                 </form>
             </div>
         </nav>
@@ -165,6 +173,10 @@
                 m: 0,
             },
             methods: {
+                exit: function () {
+                    sessionStorage.clear();
+                    window.location.href = 'home.html';
+                },
             },
             mounted() {
                 this.username1 = sessionStorage.getItem("username");

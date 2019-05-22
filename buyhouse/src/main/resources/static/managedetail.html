@@ -30,37 +30,19 @@
 <body>
     <div class="container-fluid px-0" id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light " aria-label="breadcrumb">
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="home.html">首页 <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="manager.html">审核房屋 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
-                        <a class="nav-link" href="buy.html">二手房<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active ml-3">
-                        <a class="nav-link" href="buynewhouse.html">新房<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active ml-3">
-                        <a class="nav-link" href="sell.html">售房</a>
-                    </li>
-
-                    <li class="nav-item active ml-3">
-                        <a class="nav-link" href="guide.html">指南</a>
+                        <a class="nav-link" href="sellNewHouse.html">发布楼房信息<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <form v-if="m==0" class="form-inline m-2 my-lg-0">
-                    <h class="breadcrumb-item"><a href="managerlogin.html">管理</a></h>
-                    <h class="breadcrumb-item"><a href="Login.html">登录</a></h>
-                    <h class="breadcrumb-item"><a href="Register.html">注册</a></h>
-
-                </form>
-                <form v-else class="form-inline m-2 my-lg-0">
-                    <form v-else class="form-inline m-2 my-lg-0">
-                        <h class="breadcrumb-item">欢迎您,<a href="userInfo.html" class="text-dark">{{username1}}</a></h>
-                        <button v-on:click="exit()" type="button"
-                            class="btn btn-outline-secondary btn-sm ml-2">退出</button>
-                    </form>
+                <form class="form-inline  my-lg-0">
+                    <h class="breadcrumb-item">欢迎您,管理员{{username1}}</a></h>
+                    <button v-on:click="exit()" type="button" class="btn btn-outline-secondary btn-sm ml-2">退出</button>
                 </form>
             </div>
         </nav>
@@ -103,10 +85,6 @@
                         <div class="mb-5">
                             <p class="sup">总价： <span class="text-danger"
                                     style="font-size:60px;">{{houseinfo.price}}</span>万/套
-                                <button v-if="houseinfo.collec==0" v-on:click="collection(houseinfo.id)" type="button"
-                                    class="btn btn-outline-primary btn-sm float-right">收藏</button>
-                                <button v-else v-on:click="cancel(houseinfo.id)" type="button"
-                                    class="btn btn-outline-primary btn-sm float-right active">已收藏</button>
                         </div>
                         <hr>
                         <h5 class="card-text mt-3">具体位置：<span class="text-danger">
@@ -159,79 +137,36 @@
                 id: '',
             },
             methods: {
-                collection: function (id) {
-                    axios.post("/collection.json", {
-                            houseInfoId: id,
-                            userPhone: this.username1,
-                        })
-                        .then((res) => {
-                            axios.post("/listById.json", {
-                                    userPhone: this.username1,
-                                    houseInfoId: this.id,
-                                })
-                                .then(res => {
-                                    this.houseinfo = res.data.data;
-                                    console.log(this.houseinfo);
-                                })
-                                .catch(error => {
-                                    //toastr.error(error.response.data.msg);
-                                })
-                        })
-                        .catch(error => {
-                            toastr.error(error.response.data.msg);
-                        })
-                },
-                cancel: function (id) {
-                    axios.post("/cancel.json", {
-                            houseInfoId: id,
-                            userPhone: this.username1,
-                        })
-                        .then(res => {
-                            axios.post("/listById.json", {
-                                    userPhone: this.username1,
-                                    houseInfoId: this.id,
-                                })
-                                .then(res => {
-                                    this.houseinfo = res.data.data;
-                                    console.log(this.houseinfo);
-                                })
-                                .catch(error => {
-                                    toastr.error(error.response.data.msg);
-                                })
-
-                        })
-                        .catch(error => {
-                            toastr.error(error.response.data.msg);
-                        })
-                },
                 exit: function () {
                     sessionStorage.clear();
                     window.location.href = 'home.html';
-                }
-
+                },
             },
             mounted() {
-                this.username1 = sessionStorage.getItem("username");
-                console.log(this.username1);
-                if (this.username1 != null) {
-                    this.m = 1
+                this.username1 = sessionStorage.getItem("username1");
+                if (this.username1 == null) {
+                    window.location.href = 'managerlogin.html';
                 } else {
-                    this.m = 0
+                    if (this.username1 != null) {
+                        this.m = 1
+                    } else {
+                        this.m = 0
+                    }
+                    var url = decodeURI(window.location.href);
+                    var argsIndex = url.split("?id=");
+                    this.id = argsIndex[1];
+                    axios.post("/listById.json", {
+                            userPhone: this.username1,
+                            houseInfoId: this.id,
+                        })
+                        .then(res => {
+                            this.houseinfo = res.data.data;
+                            console.log(this.houseinfo);
+                        })
+                        .catch(error => {
+                            toastr.error(error.response.data.msg);
+                        })
                 }
-                var url = decodeURI(window.location.href);
-                var argsIndex = url.split("?id=");
-                this.id = argsIndex[1];
-                axios.post("/listById.json", {
-                        userPhone: this.username1,
-                        houseInfoId: this.id,
-                    })
-                    .then(res => {
-                        this.houseinfo = res.data.data;
-                        console.log(this.houseinfo);
-                    })
-                    .catch(error => {
-                        toastr.error(error.response.data.msg);
-                    })
             },
 
 

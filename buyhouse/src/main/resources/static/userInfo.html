@@ -31,10 +31,17 @@
                         <a class="nav-link" href="home.html">首页 <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
-                        <a class="nav-link" href="buy.html">买房<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="buy.html">二手房<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="buynewhouse.html">新房<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active ml-3">
                         <a class="nav-link" href="sell.html">售房</a>
+                    </li>
+
+                    <li class="nav-item active ml-3">
+                        <a class="nav-link" href="guide.html">指南</a>
                     </li>
                 </ul>
                 <form class="form-inline m-2 my-lg-0">
@@ -45,7 +52,7 @@
         </nav>
 
 
-        <div class="text-center my-3" style="font-size:35px">个人中心</div>
+        <div class="text-center my-3" style="font-size:35px">我的收藏</div>
         <!-- 楼房信息 -->
         <div v-for="(houseinfo, index) in houseinfos" :key="index" class="card mt-3 ml-3" style="max-width: 940px;">
             <div class="row no-gutters">
@@ -72,25 +79,46 @@
             </div>
 
         </div>
+        <div v-for="(houseinfo, index) in newhouseinfos" :key="index" class="card mt-3 ml-3" style="max-width: 940px;">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <img v-bind:src="houseinfo.src" class="card-img w-100 h-100">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h3 v-on:click="handle1(houseinfo.id)" class="bt-1">
+                            <a :href="url1" class="card-title text-dark ">{{houseinfo.name}}</a> <button class="btn">
+                                <span class="badge badge-primary">{{houseinfo.style}}</span>
+                            </button></h3>
+                        <p class="card-text">位置：<span class="text-danger">
+                                {{houseinfo.urban}}区 {{houseinfo.address}}</span></p>
+                        <p class="card-text">面积：<span class="text-danger">{{houseinfo.size}}㎡</span></p>
+                        <p class="card-text">户型：<span class="text-danger">{{houseinfo.room}}室</span></p>
+                    </div>
 
-
-
-        <div class="jumbotron jumbotron-fluid mb-0 mt-5 py-1 bg-dark clearfix">
-            <div class="container pt-4">
-                <h1 class="text-center align-text-bottom text-light" style="font-size: 10px;">Copyright(c)2019
-                    中南林业科技大学信息与计算科学
-                    版权所有
-                </h1>
+                </div>
+                <div class="price col-md-2 mt-5">
+                    <p class="sup">均价<span class="text-danger" style="font-size:30px;">{{houseinfo.price}}</span>元/平
+                    </p>
+                    </p>
+                </div>
             </div>
+
         </div>
+
+
+
+
 
         <script>
             new Vue({
                 el: '#app',
                 data: {
                     houseinfos: '',
+                    newhouseinfos: '',
                     username1: '',
                     url: '',
+                    url1:'',
                 },
 
                 methods: {
@@ -100,6 +128,9 @@
                     },
                     handle: function (id) {
                         this.url = `detail.html?id=${id}`;
+                    },
+                    handle1: function (id) {
+                        this.url1 = `newhousedetail.html?id=${id}`;
                     }
                 },
                 mounted() {
@@ -110,6 +141,15 @@
                         })
                         .then(res => {
                             this.houseinfos = res.data.data;
+                        })
+                        .catch(error => {
+
+                        })
+                    axios.post("/getnewHousedata.json", {
+                            userPhone: this.username1,
+                        })
+                        .then(res => {
+                            this.newhouseinfos = res.data.data;
                         })
                         .catch(error => {
 
